@@ -11,10 +11,10 @@ model User {
   id          Int         @id @default(autoincrement())
   name        String?
   email       String?
-  registry    String
+  registry    String      @unique
   password    String
   createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  updatedAt   DateTime?
   users_roles User_Role[]
 
   @@map("users")
@@ -25,7 +25,7 @@ model Role {
   name        String
   description String?
   createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  updatedAt   DateTime
   users_roles User_Role[]
 
   @@map("roles")
@@ -46,7 +46,7 @@ model User_Role {
 model Supplier {
   id        Int      @id @default(autoincrement())
   name      String?
-  registry  String
+  registry  String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
