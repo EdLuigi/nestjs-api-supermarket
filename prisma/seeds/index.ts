@@ -1,11 +1,17 @@
 import { PrismaClient } from '@prisma/client';
 import { usersSeed } from './users.seed';
+import { permissionsSeed } from './permissions.seed';
 
 const prisma = new PrismaClient();
 
 async function main() {
   await prisma.user.createMany({
     data: usersSeed,
+    skipDuplicates: true,
+  });
+
+  await prisma.permission.createMany({
+    data: permissionsSeed,
     skipDuplicates: true,
   });
 }
