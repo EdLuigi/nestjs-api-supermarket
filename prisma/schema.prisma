@@ -21,46 +21,70 @@ model User {
 }
 
 model Role {
-  id          Int         @id @default(autoincrement())
-  name        String
-  description String?
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime
-  users_roles User_Role[]
+  id                Int               @id @default(autoincrement())
+  name              String
+  description       String?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime?
+  users_roles       User_Role[]
+  roles_permissions Role_Permission[]
 
   @@map("roles")
 }
 
+model Permission {
+  id                Int               @id @default(autoincrement())
+  name              String
+  description       String?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime?
+  roles_permissions Role_Permission[]
+
+  @@map("permissions")
+}
+
 model User_Role {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   userId    Int
-  user      User     @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
   roleId    Int
-  role      Role     @relation(fields: [roleId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  role      Role      @relation(fields: [roleId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
 
   @@map("users_roles")
 }
 
+model Role_Permission {
+  id           Int        @id @default(autoincrement())
+  roleId       Int
+  role         Role       @relation(fields: [roleId], references: [id])
+  permissionId Int
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime?
+
+  @@map("roles_permissions")
+}
+
 model Supplier {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   name      String?
-  registry  String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  registry  String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
 
   @@map("suppliers")
 }
 
 model Product {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   name      String
-  stock     Int      @default(0)
-  price     Decimal  @default(0)
-  discount  Decimal? @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  stock     Int       @default(0)
+  price     Decimal   @default(0)
+  discount  Decimal?  @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
 
   @@map("products")
 }
