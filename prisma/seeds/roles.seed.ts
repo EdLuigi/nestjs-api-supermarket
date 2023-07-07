@@ -1,29 +1,19 @@
-import { Role } from "src/roles/entities/role.entity";
+import { Role } from 'src/roles/entities/role.entity';
 
 export const rolesSeed: Role[] = [
   {
     id: 1,
-    name: 'role1',
+    name: 'Admin',
     createdAt: new Date(),
   },
   {
     id: 2,
-    name: 'role2',
+    name: 'Manager',
     createdAt: new Date(),
   },
   {
     id: 3,
-    name: 'role3',
-    createdAt: new Date(),
-  },
-  {
-    id: 4,
-    name: 'role4',
-    createdAt: new Date(),
-  },
-  {
-    id: 5,
-    name: 'role5',
+    name: 'Employee',
     createdAt: new Date(),
   },
 ];

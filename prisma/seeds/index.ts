@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { usersSeed } from './users.seed';
 import { permissionsSeed } from './permissions.seed';
 import { rolesSeed } from './roles.seed';
+import { usersRolesSeeds } from './users-roles.seed';
 
 const prisma = new PrismaClient();
 
@@ -18,6 +19,11 @@ async function main() {
 
   await prisma.role.createMany({
     data: rolesSeed,
+    skipDuplicates: true,
+  });
+
+  await prisma.user_Role.createMany({
+    data: usersRolesSeeds,
     skipDuplicates: true,
   });
 }
