@@ -1,1 +1,6 @@
-export class RolesPermission {}
+export class RolesPermission {
+  id: number;
+  roleId: number;
+  permissionId: number;
+  createdAt: Date;
+}
