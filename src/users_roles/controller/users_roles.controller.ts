@@ -7,8 +7,8 @@ import {
   Delete,
   UseGuards,
 } from '@nestjs/common';
-import { UsersRolesService } from './users_roles.service';
-import { CreateUsersRoleDto } from './dto/create-users_role.dto';
+import { UsersRolesService } from '../service/users_roles.service';
+import { CreateUsersRoleDto } from '../dto/create-users_role.dto';
 import { JwtGuard } from 'src/auth/guard/jwt.guard';
 
 //TODO: must have perssioon to use

@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
-import { PermissionsService } from './permissions.service';
-import { PermissionsController } from './permissions.controller';
+import { PermissionsService } from './service/permissions.service';
+import { PermissionsController } from './controller/permissions.controller';
 
 @Global()
 @Module({
