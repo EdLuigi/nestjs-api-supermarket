@@ -1,36 +1,36 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
   UseGuards,
 } from '@nestjs/common';
-import { UsersService } from '../service/users.service';
-import { UpdateUserDto } from '../dto/update-user.dto';
-import { JwtGuard } from 'src/auth/guard/jwt.guard';
 import { GetUser } from 'src/auth/decorator/get-user.decorator';
-import { User } from '@prisma/client';
+import { JwtGuard } from 'src/auth/guard/jwt.guard';
+import { UpdateUserDto } from '../dto/update-user.dto';
+import { UsersService } from '../service/users.service';
+import { UserIsAdminGuard } from 'src/auth/guard/user-is-admin.guard';
+import { UserIsManagerGuard } from 'src/auth/guard/user-is-manager.guard';
 
 @UseGuards(JwtGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // Must have permission
-  @Get()
-  findAll(@GetUser('id') userId: number) {
-    return this.usersService.findAll();
-  }
-
   @Get('me')
   getMe(@GetUser('id') userId: number) {
     return this.usersService.findOne(+userId);
   }
 
-  // Must have permission
+  @UseGuards(UserIsManagerGuard)
+  @Get()
+  findAll() {
+    return this.usersService.findAll();
+  }
+
+  @UseGuards(UserIsManagerGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
@@ -41,7 +41,7 @@ export class UsersController {
     return this.usersService.update(+userId, updateUserDto);
   }
 
-  // Must have permission
+  @UseGuards(UserIsAdminGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
