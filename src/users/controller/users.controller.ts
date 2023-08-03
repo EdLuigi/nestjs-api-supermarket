@@ -21,7 +21,7 @@ export class UsersController {
 
   @Get('me')
   getMe(@GetUser('id') userId: number) {
-    return this.usersService.findOne(+userId);
+    return this.usersService.findMe(+userId);
   }
 
   @UseGuards(UserIsManagerGuard)

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateUserDto } from '../dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { UpdateUserDto } from '../dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -8,6 +8,32 @@ export class UsersService {
 
   findAll() {
     return this.prisma.user.findMany();
+  }
+
+  async findMe(id: number) {
+    if (isNaN(id)) return null;
+    const user = await this.prisma.user.findFirst({ where: { id } });
+    const userRole = await this.prisma.user_Role.findFirst({
+      where: { userId: id },
+    });
+    const roleInfo = await this.prisma.role.findFirst({
+      where: { id: userRole.id },
+    });
+    const userRolePermissions = await this.prisma.role_Permission.findMany({
+      where: { roleId: userRole.id },
+    });
+    const permissions = await this.prisma.permission.findMany();
+
+    const permissionsNames = userRolePermissions.map((item) => {
+      const objects = permissions.find((i) => i.id === item.permissionId);
+      return objects.name;
+    });
+
+    return {
+      ...user,
+      role: roleInfo.name,
+      permissions: permissionsNames,
+    };
   }
 
   findOne(id: number) {
