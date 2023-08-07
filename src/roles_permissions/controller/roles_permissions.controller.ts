@@ -1,18 +1,19 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Post,
   UseGuards,
 } from '@nestjs/common';
-import { RolesPermissionsService } from '../service/roles_permissions.service';
-import { CreateRolesPermissionDto } from '../dto/create-roles_permission.dto';
+import { RoutePermission } from 'src/auth/decorator/route-permission.decorator';
 import { JwtGuard } from 'src/auth/guard/jwt.guard';
+import { UserHasPermissionGuard } from 'src/auth/guard/route-permission/route-permission.guard';
+import { CreateRolesPermissionDto } from '../dto/create-roles_permission.dto';
+import { RolesPermissionsService } from '../service/roles_permissions.service';
 
-//TODO: must have perssioon to use
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('roles-permissions')
 export class RolesPermissionsController {
   constructor(
@@ -20,21 +21,25 @@ export class RolesPermissionsController {
   ) {}
 
   @Post()
+  @RoutePermission('create-role-permission')
   create(@Body() createRolesPermissionDto: CreateRolesPermissionDto) {
     return this.rolesPermissionsService.create(createRolesPermissionDto);
   }
 
   @Get()
+  @RoutePermission('find-all-roles-permissions')
   findAll() {
     return this.rolesPermissionsService.findAll();
   }
 
   @Get(':id')
+  @RoutePermission('find-role-permission')
   findOne(@Param('id') id: string) {
     return this.rolesPermissionsService.findOne(+id);
   }
 
   @Delete(':id')
+  @RoutePermission('delete-role-permission')
   remove(@Param('id') id: string) {
     return this.rolesPermissionsService.remove(+id);
   }

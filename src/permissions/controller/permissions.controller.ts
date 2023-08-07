@@ -1,39 +1,45 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
   UseGuards,
 } from '@nestjs/common';
-import { PermissionsService } from '../service/permissions.service';
+import { RoutePermission } from 'src/auth/decorator/route-permission.decorator';
+import { JwtGuard } from 'src/auth/guard/jwt.guard';
+import { UserHasPermissionGuard } from 'src/auth/guard/route-permission/route-permission.guard';
 import { CreatePermissionDto } from '../dto/create-permission.dto';
 import { UpdatePermissionDto } from '../dto/update-permission.dto';
-import { JwtGuard } from 'src/auth/guard/jwt.guard';
+import { PermissionsService } from '../service/permissions.service';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('permissions')
 export class PermissionsController {
   constructor(private readonly permissionsService: PermissionsService) {}
 
   @Post()
+  @RoutePermission('create-permission')
   create(@Body() createPermissionDto: CreatePermissionDto) {
     return this.permissionsService.create(createPermissionDto);
   }
 
   @Get()
+  @RoutePermission('find-all-permissions')
   findAll() {
     return this.permissionsService.findAll();
   }
 
   @Get(':id')
+  @RoutePermission('find-permission')
   findOne(@Param('id') id: string) {
     return this.permissionsService.findOne(+id);
   }
 
   @Patch(':id')
+  @RoutePermission('update-permission')
   update(
     @Param('id') id: string,
     @Body() updatePermissionDto: UpdatePermissionDto,
@@ -42,6 +48,7 @@ export class PermissionsController {
   }
 
   @Delete(':id')
+  @RoutePermission('delete-permission')
   remove(@Param('id') id: string) {
     return this.permissionsService.remove(+id);
   }
