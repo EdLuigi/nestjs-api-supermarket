@@ -1,9 +1,9 @@
 import { PrismaClient } from '@prisma/client';
-import { usersSeed } from './users.seed';
 import { permissionsSeed } from './permissions.seed';
+import { rolesPermissionsSeeds } from './roles-permissions.seed';
 import { rolesSeed } from './roles.seed';
 import { usersRolesSeeds } from './users-roles.seed';
-import { rolesPermissionsSeeds } from './roles-permissions.seed';
+import { usersSeed } from './users.seed';
 
 const prisma = new PrismaClient();
 

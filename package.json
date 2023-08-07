@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "db:seed": "ts-node prisma/seeds/index.ts",
+    "db:reset": "npx prisma migrate reset --force && ts-node prisma/seeds/index.ts",
     "db:rm": "docker compose rm db -s -f -v",
     "db:up": "docker compose up db -d",
     "prisma:migrate:dev": "npx prisma migrate dev",
