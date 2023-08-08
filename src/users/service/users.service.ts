@@ -21,10 +21,10 @@ export class UsersService {
       where: { userId: id },
     });
     const roleInfo = await this.prisma.role.findFirst({
-      where: { id: userRole.id },
+      where: { id: userRole.roleId },
     });
     const userRolePermissions = await this.prisma.role_Permission.findMany({
-      where: { roleId: userRole.id },
+      where: { roleId: userRole.roleId },
     });
     const permissions = await this.prisma.permission.findMany();
 
@@ -64,6 +64,11 @@ export class UsersService {
     });
 
     if (!user) return;
+
+    const userRole = await this.prisma.user_Role.findFirst({
+      where: { userId: id },
+    });
+    await this.prisma.user_Role.delete({ where: { id: userRole.id } });
 
     await this.prisma.user.delete({
       where: { id },

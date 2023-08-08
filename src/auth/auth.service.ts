@@ -1,11 +1,12 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { SignupDto } from './dto/signup.dto';
-import { SigninDto } from './dto/signin.dto';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import * as argon from 'argon2';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { UsersRole } from 'src/users_roles/entities/users_role.entity';
+import { SigninDto } from './dto/signin.dto';
+import { SignupDto } from './dto/signup.dto';
 
 @Injectable()
 export class AuthService {
@@ -27,6 +28,15 @@ export class AuthService {
           createdAt: new Date(),
         },
       });
+
+      const newUserRole: UsersRole = {
+        userId: user.id,
+        roleId: 3,
+        createdAt: new Date(),
+      };
+      console.log(newUserRole)
+
+      await this.prisma.user_Role.create({ data: newUserRole });
 
       return this.signToken(user.id, user.registry);
     } catch (error) {
