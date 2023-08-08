@@ -7,7 +7,14 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   findAll() {
-    return this.prisma.user.findMany();
+    return this.prisma.user
+      .findMany
+      // {
+      //   orderBy: {
+      //     id: 'asc',
+      //   },
+      // }
+      ();
   }
 
   async findMe(id: number) {

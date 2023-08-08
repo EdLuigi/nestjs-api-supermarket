@@ -38,9 +38,15 @@ export class UsersController {
   }
 
   @Patch()
-  @RoutePermission('update-user')
-  update(@GetUser('id') userId: number, @Body() updateUserDto: UpdateUserDto) {
+  @RoutePermission('update-me')
+  updateMe(@GetUser('id') userId: number, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+userId, updateUserDto);
+  }
+  
+  @Patch(":id")
+  @RoutePermission('update-user')
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
