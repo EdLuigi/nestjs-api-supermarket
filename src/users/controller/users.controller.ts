@@ -10,7 +10,7 @@ import {
 import { GetUser } from 'src/auth/decorator/get-user.decorator';
 import { RoutePermission } from 'src/auth/decorator/route-permission.decorator';
 import { JwtGuard } from 'src/auth/guard/jwt.guard';
-import { UserHasPermissionGuard } from 'src/auth/guard/route-permission/route-permission.guard';
+import { UserHasPermissionGuard } from 'src/auth/guard/route-permission.guard';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UsersService } from '../service/users.service';
 
