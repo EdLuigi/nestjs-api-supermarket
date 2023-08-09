@@ -83,6 +83,18 @@ CREATE TABLE "products" (
 CREATE UNIQUE INDEX "users_registry_key" ON "users"("registry");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "roles_name_key" ON "roles"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "permissions_name_key" ON "permissions"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_roles_userId_roleId_key" ON "users_roles"("userId", "roleId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "roles_permissions_roleId_permissionId_key" ON "roles_permissions"("roleId", "permissionId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "suppliers_registry_key" ON "suppliers"("registry");
 
 -- AddForeignKey
