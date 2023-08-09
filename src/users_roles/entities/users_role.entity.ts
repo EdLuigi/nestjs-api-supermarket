@@ -1,5 +1,5 @@
 export class UsersRole {
-  id: number;
+  id?: number;
   userId: number;
   roleId: number;
   createdAt: Date;

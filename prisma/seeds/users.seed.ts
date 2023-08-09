@@ -2,7 +2,6 @@ import { User } from 'src/users/entities/user.entity';
 
 export const usersSeed: User[] = [
   {
-    id: 1,
     name: 'user admin',
     registry: 'user1',
     password:
@@ -10,7 +9,6 @@ export const usersSeed: User[] = [
     createdAt: new Date(),
   },
   {
-    id: 2,
     name: 'user manager',
     registry: 'user2',
     password:
@@ -18,7 +16,6 @@ export const usersSeed: User[] = [
     createdAt: new Date(),
   },
   {
-    id: 3,
     name: 'user employee',
     registry: 'user3',
     password:

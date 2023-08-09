@@ -1,5 +1,5 @@
 export class Permission {
-  id: number;
+  id?: number;
   name: string;
   description?: string;
   createdAt: Date;

@@ -34,7 +34,6 @@ export class AuthService {
         roleId: 3,
         createdAt: new Date(),
       };
-      console.log(newUserRole)
 
       await this.prisma.user_Role.create({ data: newUserRole });
 
