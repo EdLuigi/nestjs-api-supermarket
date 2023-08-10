@@ -66,19 +66,11 @@ export const permissionsSeed: Permission[] = [
     createdAt: new Date(),
   },
   {
-    name: 'create-user-role',
-    createdAt: new Date(),
-  },
-  {
     name: 'find-all-users-roles',
     createdAt: new Date(),
   },
   {
     name: 'find-user-role',
-    createdAt: new Date(),
-  },
-  {
-    name: 'delete-user-role',
     createdAt: new Date(),
   },
   {
@@ -95,6 +87,14 @@ export const permissionsSeed: Permission[] = [
   },
   {
     name: 'delete-role-permission',
+    createdAt: new Date(),
+  },
+  {
+    name: 'find-user-role-by-user-id',
+    createdAt: new Date(),
+  },
+  {
+    name: 'update-user-role',
     createdAt: new Date(),
   },
 ];

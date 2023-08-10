@@ -36,7 +36,7 @@ export class UsersService {
     return {
       ...user,
       role: roleInfo.name,
-      permissions: permissionsNames,
+      permissions: permissionsNames.sort(),
     };
   }
 

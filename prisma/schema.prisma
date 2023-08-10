@@ -45,14 +45,13 @@ model Permission {
 
 model User_Role {
   id        Int       @id @default(autoincrement())
-  userId    Int
+  userId    Int       @unique
   user      User      @relation(fields: [userId], references: [id])
   roleId    Int
   role      Role      @relation(fields: [roleId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime?
 
-  @@unique([userId, roleId])
   @@map("users_roles")
 }
 

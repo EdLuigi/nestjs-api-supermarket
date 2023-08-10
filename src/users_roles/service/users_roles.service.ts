@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUsersRoleDto } from '../dto/create-users_role.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UsersService } from 'src/users/service/users.service';
 import { RolesService } from 'src/roles/service/roles.service';
+import { UsersService } from 'src/users/service/users.service';
+import { CreateUsersRoleDto } from '../dto/create-users_role.dto';
+import { UpdateUsersRoleDto } from '../dto/update-users_role.dto';
 
 @Injectable()
 export class UsersRolesService {
@@ -18,6 +19,11 @@ export class UsersRolesService {
 
     const role = await this.rolesService.findOne(createUsersRoleDto.roleId);
     if (!role) return "role doesn't exist";
+
+    const userRole = await this.prisma.user_Role.findFirst({
+      where: { userId: user.id },
+    });
+    if (!!userRole) return 'user already has a role';
 
     return await this.prisma.user_Role.create({
       data: {
@@ -35,6 +41,35 @@ export class UsersRolesService {
   findOne(id: number) {
     if (isNaN(id)) return null;
     return this.prisma.user_Role.findFirst({ where: { id } });
+  }
+
+  findByUserId(userId: number) {
+    if (isNaN(userId)) return null;
+    return this.prisma.user_Role.findFirst({ where: { userId } });
+  }
+
+  async update(userId: number, updateUserRoleDto: UpdateUsersRoleDto) {
+    if (isNaN(userId)) return null;
+
+    const user = await this.usersService.findOne(userId);
+    if (!user) return "user doesn't exist";
+
+    const role = await this.rolesService.findOne(updateUserRoleDto.roleId);
+    if (!role) return "role doesn't exist";
+
+    const userRole = await this.prisma.user_Role.findFirst({
+      where: { userId },
+    });
+
+    if (!userRole) return "user role doesn't exist";
+
+    return this.prisma.user_Role.update({
+      where: { id: userRole.id },
+      data: {
+        ...updateUserRoleDto,
+        updatedAt: new Date(),
+      },
+    });
   }
 
   async remove(id: number) {

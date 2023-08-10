@@ -89,7 +89,7 @@ CREATE UNIQUE INDEX "roles_name_key" ON "roles"("name");
 CREATE UNIQUE INDEX "permissions_name_key" ON "permissions"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_roles_userId_roleId_key" ON "users_roles"("userId", "roleId");
+CREATE UNIQUE INDEX "users_roles_userId_key" ON "users_roles"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "roles_permissions_roleId_permissionId_key" ON "roles_permissions"("roleId", "permissionId");
