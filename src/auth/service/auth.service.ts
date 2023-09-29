@@ -5,8 +5,8 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import * as argon from 'argon2';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UsersRole } from 'src/users_roles/entities/users_role.entity';
-import { SigninDto } from './dto/signin.dto';
-import { SignupDto } from './dto/signup.dto';
+import { SigninDto } from '../dto/signin.dto';
+import { SignupDto } from '../dto/signup.dto';
 
 @Injectable()
 export class AuthService {
