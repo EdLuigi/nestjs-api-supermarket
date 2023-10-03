@@ -28,7 +28,7 @@ export class UsersRolesController {
     return this.usersRolesService.findByUserId(+id);
   }
 
-  @Patch(':userId')
+  @Patch('/user/:userId')
   @RoutePermission('update-user-role')
   update(
     @Param('userId') userId: string,

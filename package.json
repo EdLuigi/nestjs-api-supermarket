@@ -11,7 +11,7 @@
     "db:rm": "docker compose rm db -s -f -v",
     "db:up": "docker compose up db -d",
     "prisma:migrate:dev": "npx prisma migrate dev",
-    "db:rebuild": "npm run db:rm && npm run db:up && sleep 5 && npm run prisma:migrate:dev",
+    "db:rebuild": "npm run db:rm && npm run db:up && sleep 5 && npm run prisma:migrate:dev && prisma/seeds/index.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",

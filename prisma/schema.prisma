@@ -69,11 +69,12 @@ model Role_Permission {
 }
 
 model Supplier {
-  id        Int       @id @default(autoincrement())
-  name      String?
-  registry  String    @unique
-  createdAt DateTime  @default(now())
-  updatedAt DateTime?
+  id          Int       @id @default(autoincrement())
+  name        String
+  companyName String
+  registry    String    @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime?
 
   @@map("suppliers")
 }
