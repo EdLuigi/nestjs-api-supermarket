@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { permissionsSeed } from './permissions.seed';
+import { productsSeeds } from './products.seed';
 import { rolesPermissionsSeeds } from './roles-permissions.seed';
 import { rolesSeed } from './roles.seed';
 import { suppliersSeeds } from './suppliers.seed';
@@ -24,18 +25,23 @@ async function main() {
     skipDuplicates: true,
   });
 
-  await prisma.user_Role.createMany({
+  await prisma.userRole.createMany({
     data: usersRolesSeeds,
     skipDuplicates: true,
   });
 
-  await prisma.role_Permission.createMany({
+  await prisma.rolePermission.createMany({
     data: rolesPermissionsSeeds,
     skipDuplicates: true,
   });
 
   await prisma.supplier.createMany({
     data: suppliersSeeds,
+    skipDuplicates: true,
+  });
+
+  await prisma.product.createMany({
+    data: productsSeeds,
     skipDuplicates: true,
   });
 }

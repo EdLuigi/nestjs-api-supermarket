@@ -196,4 +196,64 @@ export const rolesPermissionsSeeds: RolesPermission[] = [
     permissionId: 29,
     createdAt: new Date(),
   },
+  {
+    roleId: 1,
+    permissionId: 30,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 1,
+    permissionId: 31,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 2,
+    permissionId: 31,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 3,
+    permissionId: 31,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 1,
+    permissionId: 32,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 2,
+    permissionId: 32,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 3,
+    permissionId: 32,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 1,
+    permissionId: 33,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 2,
+    permissionId: 33,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 3,
+    permissionId: 33,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 1,
+    permissionId: 34,
+    createdAt: new Date(),
+  },
+  {
+    roleId: 1,
+    permissionId: 35,
+    createdAt: new Date(),
+  },
 ];

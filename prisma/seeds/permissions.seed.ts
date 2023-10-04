@@ -146,4 +146,34 @@ export const permissionsSeed: Permission[] = [
     name: 'delete-supplier',
     createdAt: new Date(),
   },
+  {
+    id: 30,
+    name: 'create-product',
+    createdAt: new Date(),
+  },
+  {
+    id: 31,
+    name: 'find-all-products',
+    createdAt: new Date(),
+  },
+  {
+    id: 32,
+    name: 'find-product',
+    createdAt: new Date(),
+  },
+  {
+    id: 33,
+    name: 'find-products-by-supplier',
+    createdAt: new Date(),
+  },
+  {
+    id: 34,
+    name: 'update-product',
+    createdAt: new Date(),
+  },
+  {
+    id: 35,
+    name: 'delete-product',
+    createdAt: new Date(),
+  },
 ];
