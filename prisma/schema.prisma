@@ -8,42 +8,45 @@ datasource db {
 }
 
 model User {
-  id          Int         @id @default(autoincrement())
-  name        String?
-  email       String?
-  registry    String      @unique
-  password    String
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime?
-  users_roles User_Role[]
+  id        Int       @id @default(autoincrement())
+  name      String?
+  email     String?
+  registry  String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+
+  userRoles UserRole?
 
   @@map("users")
 }
 
 model Role {
-  id                Int               @id @default(autoincrement())
-  name              String            @unique
-  description       String?
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime?
-  users_roles       User_Role[]
-  roles_permissions Role_Permission[]
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime?
+
+  userRoles       UserRole[]
+  rolePermissions RolePermission[]
 
   @@map("roles")
 }
 
 model Permission {
-  id                Int               @id @default(autoincrement())
-  name              String            @unique
-  description       String?
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime?
-  roles_permissions Role_Permission[]
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime?
+
+  rolePermissions RolePermission[]
 
   @@map("permissions")
 }
 
-model User_Role {
+model UserRole {
   id        Int       @id @default(autoincrement())
   userId    Int       @unique
   user      User      @relation(fields: [userId], references: [id])
@@ -55,7 +58,7 @@ model User_Role {
   @@map("users_roles")
 }
 
-model Role_Permission {
+model RolePermission {
   id           Int        @id @default(autoincrement())
   roleId       Int
   role         Role       @relation(fields: [roleId], references: [id])
@@ -76,17 +79,22 @@ model Supplier {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime?
 
+  products Product[]
+
   @@map("suppliers")
 }
 
 model Product {
-  id        Int       @id @default(autoincrement())
-  name      String
-  stock     Int       @default(0)
-  price     Decimal   @default(0)
-  discount  Decimal?  @default(0)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime?
+  id          Int       @id @default(autoincrement())
+  supplierId  Int
+  supplier    Supplier  @relation(fields: [supplierId], references: [id])
+  name        String
+  description String?
+  stock       Int       @default(0)
+  price       Decimal   @default(0)
+  discount    Int?      @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime?
 
   @@map("products")
 }

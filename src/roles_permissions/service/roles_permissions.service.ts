@@ -23,7 +23,7 @@ export class RolesPermissionsService {
     );
     if (!permission) return "permission doesn't exist";
 
-    return await this.prisma.role_Permission.create({
+    return await this.prisma.rolePermission.create({
       data: {
         roleId: createRolesPermissionDto.roleId,
         permissionId: createRolesPermissionDto.permissionId,
@@ -33,23 +33,23 @@ export class RolesPermissionsService {
   }
 
   findAll() {
-    return this.prisma.role_Permission.findMany();
+    return this.prisma.rolePermission.findMany();
   }
 
   findOne(id: number) {
     if (isNaN(id)) return null;
-    return this.prisma.role_Permission.findFirst({ where: { id } });
+    return this.prisma.rolePermission.findFirst({ where: { id } });
   }
 
   async remove(id: number) {
     if (isNaN(id)) return null;
-    const role_Permission = await this.prisma.role_Permission.findFirst({
+    const rolePermission = await this.prisma.rolePermission.findFirst({
       where: { id },
     });
 
-    if (!role_Permission) return;
+    if (!rolePermission) return;
 
-    await this.prisma.role_Permission.delete({
+    await this.prisma.rolePermission.delete({
       where: { id },
     });
   }

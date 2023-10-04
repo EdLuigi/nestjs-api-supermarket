@@ -35,7 +35,7 @@ export class AuthService {
         createdAt: new Date(),
       };
 
-      await this.prisma.user_Role.create({ data: newUserRole });
+      await this.prisma.userRole.create({ data: newUserRole });
 
       return this.signToken(user.id, user.registry);
     } catch (error) {

@@ -20,12 +20,12 @@ export class UsersRolesService {
     const role = await this.rolesService.findOne(createUsersRoleDto.roleId);
     if (!role) return "role doesn't exist";
 
-    const userRole = await this.prisma.user_Role.findFirst({
+    const userRole = await this.prisma.userRole.findFirst({
       where: { userId: user.id },
     });
     if (!!userRole) return 'user already has a role';
 
-    return await this.prisma.user_Role.create({
+    return await this.prisma.userRole.create({
       data: {
         userId: createUsersRoleDto.userId,
         roleId: createUsersRoleDto.roleId,
@@ -35,17 +35,17 @@ export class UsersRolesService {
   }
 
   findAll() {
-    return this.prisma.user_Role.findMany();
+    return this.prisma.userRole.findMany();
   }
 
   findOne(id: number) {
     if (isNaN(id)) return null;
-    return this.prisma.user_Role.findFirst({ where: { id } });
+    return this.prisma.userRole.findFirst({ where: { id } });
   }
 
   findByUserId(userId: number) {
     if (isNaN(userId)) return null;
-    return this.prisma.user_Role.findFirst({ where: { userId } });
+    return this.prisma.userRole.findFirst({ where: { userId } });
   }
 
   async update(userId: number, updateUserRoleDto: UpdateUsersRoleDto) {
@@ -57,13 +57,13 @@ export class UsersRolesService {
     const role = await this.rolesService.findOne(updateUserRoleDto.roleId);
     if (!role) return "role doesn't exist";
 
-    const userRole = await this.prisma.user_Role.findFirst({
+    const userRole = await this.prisma.userRole.findFirst({
       where: { userId },
     });
 
     if (!userRole) return "user role doesn't exist";
 
-    return this.prisma.user_Role.update({
+    return this.prisma.userRole.update({
       where: { id: userRole.id },
       data: {
         ...updateUserRoleDto,
@@ -74,13 +74,13 @@ export class UsersRolesService {
 
   async remove(id: number) {
     if (isNaN(id)) return null;
-    const permission = await this.prisma.user_Role.findFirst({
+    const permission = await this.prisma.userRole.findFirst({
       where: { id },
     });
 
     if (!permission) return;
 
-    await this.prisma.user_Role.delete({
+    await this.prisma.userRole.delete({
       where: { id },
     });
   }

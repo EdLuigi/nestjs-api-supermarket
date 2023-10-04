@@ -8,6 +8,7 @@ import { PermissionsModule } from './permissions/permissions.module';
 import { UsersRolesModule } from './users_roles/users_roles.module';
 import { RolesPermissionsModule } from './roles_permissions/roles_permissions.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SuppliersModule } from './suppliers/suppliers.module';
     UsersRolesModule,
     RolesPermissionsModule,
     SuppliersModule,
+    ProductsModule,
   ],
 })
 export class AppModule {}

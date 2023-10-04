@@ -17,13 +17,13 @@ export class UsersService {
   async findMe(id: number) {
     if (isNaN(id)) return null;
     const user = await this.prisma.user.findFirst({ where: { id } });
-    const userRole = await this.prisma.user_Role.findFirst({
+    const userRole = await this.prisma.userRole.findFirst({
       where: { userId: id },
     });
     const roleInfo = await this.prisma.role.findFirst({
       where: { id: userRole.roleId },
     });
-    const userRolePermissions = await this.prisma.role_Permission.findMany({
+    const userRolePermissions = await this.prisma.rolePermission.findMany({
       where: { roleId: userRole.roleId },
     });
     const permissions = await this.prisma.permission.findMany();
@@ -65,10 +65,10 @@ export class UsersService {
 
     if (!user) return;
 
-    const userRole = await this.prisma.user_Role.findFirst({
+    const userRole = await this.prisma.userRole.findFirst({
       where: { userId: id },
     });
-    await this.prisma.user_Role.delete({ where: { id: userRole.id } });
+    await this.prisma.userRole.delete({ where: { id: userRole.id } });
 
     await this.prisma.user.delete({
       where: { id },

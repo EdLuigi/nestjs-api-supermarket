@@ -10,9 +10,9 @@ export class SuppliersService {
   async create(dto: CreateSupplierDto) {
     const supplier = await this.prisma.supplier.create({
       data: {
-        ...dto,
         name: dto.name,
         companyName: dto.companyName,
+        registry: dto.registry,
         createdAt: new Date(),
       },
     });
