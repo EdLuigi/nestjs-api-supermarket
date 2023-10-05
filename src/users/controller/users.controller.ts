@@ -1,3 +1,7 @@
+import { GetUser } from '@/auth/decorator/get-user.decorator';
+import { RoutePermission } from '@/auth/decorator/route-permission.decorator';
+import { JwtGuard } from '@/auth/guard/jwt.guard';
+import { UserHasPermissionGuard } from '@/auth/guard/route-permission.guard';
 import {
   Body,
   Controller,
@@ -7,10 +11,6 @@ import {
   Patch,
   UseGuards,
 } from '@nestjs/common';
-import { GetUser } from 'src/auth/decorator/get-user.decorator';
-import { RoutePermission } from 'src/auth/decorator/route-permission.decorator';
-import { JwtGuard } from 'src/auth/guard/jwt.guard';
-import { UserHasPermissionGuard } from 'src/auth/guard/route-permission.guard';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UsersService } from '../service/users.service';
 
@@ -39,11 +39,14 @@ export class UsersController {
 
   @Patch()
   @RoutePermission('update-me')
-  updateMe(@GetUser('id') userId: number, @Body() updateUserDto: UpdateUserDto) {
+  updateMe(
+    @GetUser('id') userId: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
     return this.usersService.update(+userId, updateUserDto);
   }
-  
-  @Patch(":id")
+
+  @Patch(':id')
   @RoutePermission('update-user')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);

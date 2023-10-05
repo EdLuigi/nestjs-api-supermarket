@@ -7,9 +7,9 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { RoutePermission } from 'src/auth/decorator/route-permission.decorator';
-import { JwtGuard } from 'src/auth/guard/jwt.guard';
-import { UserHasPermissionGuard } from 'src/auth/guard/route-permission.guard';
+import { RoutePermission } from '@/auth/decorator/route-permission.decorator';
+import { JwtGuard } from '@/auth/guard/jwt.guard';
+import { UserHasPermissionGuard } from '@/auth/guard/route-permission.guard';
 import { CreateRolesPermissionDto } from '../dto/create-roles_permission.dto';
 import { RolesPermissionsService } from '../service/roles_permissions.service';
 

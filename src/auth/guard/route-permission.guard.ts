@@ -5,9 +5,9 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { PERMISSIONS_KEY } from 'src/auth/decorator/route-permission.decorator';
-import { User } from 'src/users/entities/user.entity';
-import { UsersService } from 'src/users/service/users.service';
+import { PERMISSIONS_KEY } from '@/auth/decorator/route-permission.decorator';
+import { User } from '@/users/entities/user.entity';
+import { UsersService } from '@/users/service/users.service';
 
 @Injectable()
 export class UserHasPermissionGuard implements CanActivate {

@@ -1,4 +1,4 @@
-import { UsersRole } from 'src/users_roles/entities/users_role.entity';
+import { UsersRole } from '@/users_roles/entities/users_role.entity';
 
 export const usersRolesSeeds: UsersRole[] = [
   {

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRolesPermissionDto } from '../dto/create-roles_permission.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { RolesService } from 'src/roles/service/roles.service';
-import { PermissionsService } from 'src/permissions/service/permissions.service';
+import { PrismaService } from '@/prisma/prisma.service';
+import { RolesService } from '@/roles/service/roles.service';
+import { PermissionsService } from '@/permissions/service/permissions.service';
 
 @Injectable()
 export class RolesPermissionsService {

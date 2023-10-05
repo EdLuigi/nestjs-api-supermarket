@@ -8,12 +8,12 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { JwtGuard } from 'src/auth/guard/jwt.guard';
-import { UserHasPermissionGuard } from 'src/auth/guard/route-permission.guard';
+import { JwtGuard } from '@/auth/guard/jwt.guard';
+import { UserHasPermissionGuard } from '@/auth/guard/route-permission.guard';
 import { CreateSupplierDto } from '../dto/create-supplier.dto';
 import { UpdateSupplierDto } from '../dto/update-supplier.dto';
 import { SuppliersService } from '../service/suppliers.service';
-import { RoutePermission } from 'src/auth/decorator/route-permission.decorator';
+import { RoutePermission } from '@/auth/decorator/route-permission.decorator';
 
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('suppliers')

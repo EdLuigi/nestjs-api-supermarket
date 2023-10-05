@@ -1,4 +1,4 @@
-import { RolesPermission } from 'src/roles_permissions/entities/roles_permission.entity';
+import { RolesPermission } from '@/roles_permissions/entities/roles_permission.entity';
 
 export const rolesPermissionsSeeds: RolesPermission[] = [
   {

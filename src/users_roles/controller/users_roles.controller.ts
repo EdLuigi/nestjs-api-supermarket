@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Patch, UseGuards } from '@nestjs/common';
-import { RoutePermission } from 'src/auth/decorator/route-permission.decorator';
-import { JwtGuard } from 'src/auth/guard/jwt.guard';
-import { UserHasPermissionGuard } from 'src/auth/guard/route-permission.guard';
+import { RoutePermission } from '@/auth/decorator/route-permission.decorator';
+import { JwtGuard } from '@/auth/guard/jwt.guard';
+import { UserHasPermissionGuard } from '@/auth/guard/route-permission.guard';
 import { UpdateUsersRoleDto } from '../dto/update-users_role.dto';
 import { UsersRolesService } from '../service/users_roles.service';
 

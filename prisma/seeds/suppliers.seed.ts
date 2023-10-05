@@ -1,4 +1,4 @@
-import { Supplier } from 'src/suppliers/entities/supplier.entity';
+import { Supplier } from '@/suppliers/entities/supplier.entity';
 
 export const suppliersSeeds: Supplier[] = [
   {

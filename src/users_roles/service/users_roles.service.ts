@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { RolesService } from 'src/roles/service/roles.service';
-import { UsersService } from 'src/users/service/users.service';
+import { PrismaService } from '@/prisma/prisma.service';
+import { RolesService } from '@/roles/service/roles.service';
+import { UsersService } from '@/users/service/users.service';
 import { CreateUsersRoleDto } from '../dto/create-users_role.dto';
 import { UpdateUsersRoleDto } from '../dto/update-users_role.dto';
 
