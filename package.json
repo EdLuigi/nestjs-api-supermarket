@@ -6,12 +6,12 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "db:up": "docker compose rm -s -f -v && docker compose up -d && sleep 3",
+    "db:migrate": "npx prisma migrate dev -n db",
     "db:seed": "ts-node prisma/seeds/index.ts",
-    "db:reset": "npx prisma migrate reset --force && ts-node prisma/seeds/index.ts",
-    "db:rm": "docker compose rm db -s -f -v",
-    "db:up": "docker compose up db -d",
-    "prisma:migrate:dev": "npx prisma migrate dev -n db",
-    "db:rebuild": "npm run db:rm && npm run db:up && sleep 3 && npm run prisma:migrate:dev && npm run db:seed",
+    "db:reset": "npx prisma migrate reset --force",
+    "db:build": "npm run db:up && npm run db:migrate && npm run db:seed",
+    "db:reseed": "npm run db:reset && npm run db:seed",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -19,11 +19,12 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
+    "test": "npm run db:reseed && jest --watch",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:int": "npm run db:reseed && jest -i --no-cache --watch --config ./test/jest-int.json"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -53,7 +54,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
-    "dotenv-cli": "^7.2.1",
+    "dotenv-cli": "^7.3.0",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -86,6 +87,9 @@
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/../src/$1"
+    },
+    "globals": {
+      "__CONTROLLER__": null
     }
   }
 }

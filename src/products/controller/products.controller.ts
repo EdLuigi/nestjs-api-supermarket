@@ -26,32 +26,32 @@ export class ProductsController {
     return this.productsService.create(createProductDto);
   }
 
-  @Get()
   @RoutePermission('find-all-products')
+  @Get()
   findAll() {
     return this.productsService.findAll();
   }
 
-  @Get(':id')
   @RoutePermission('find-product')
+  @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(+id);
   }
 
-  @Get('/supplier/:id')
   @RoutePermission('find-products-by-supplier')
+  @Get('/supplier/:id')
   findBySupplier(@Param('id') id: string) {
     return this.productsService.findBySupplier(+id);
   }
 
-  @Patch(':id')
   @RoutePermission('update-product')
+  @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
     return this.productsService.update(+id, updateProductDto);
   }
 
-  @Delete(':id')
   @RoutePermission('delete-product')
+  @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productsService.remove(+id);
   }
