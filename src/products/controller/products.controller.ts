@@ -13,46 +13,58 @@ import {
 } from '@nestjs/common';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
-import { ProductsService } from '../service/products.service';
+import { CreateProductUseCase } from '../use-cases/create-product.use-case';
+import { FindAllProductsUseCase } from '../use-cases/find-all-products.use-case';
+import { FindBySupplierUseCase } from '../use-cases/find-by-supplier.use-case';
+import { FindOneProductUseCase } from '../use-cases/find-one-product.use-case';
+import { RemoveProductUseCase } from '../use-cases/remove-product.use-case';
+import { UpdateProductUseCase } from '../use-cases/update-product.use-case';
 
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('products')
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) {}
+  constructor(
+    private readonly createProductUseCase: CreateProductUseCase,
+    private readonly findAllProductsUseCase: FindAllProductsUseCase,
+    private readonly findOneProductUseCase: FindOneProductUseCase,
+    private readonly findBySupplierUseCase: FindBySupplierUseCase,
+    private readonly updateProductUseCase: UpdateProductUseCase,
+    private readonly removeProductUseCase: RemoveProductUseCase,
+  ) {}
 
   @RoutePermission('create-product')
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
-    return this.productsService.create(createProductDto);
+    return this.createProductUseCase.execute(createProductDto);
   }
 
   @RoutePermission('find-all-products')
   @Get()
   findAll() {
-    return this.productsService.findAll();
+    return this.findAllProductsUseCase.execute();
   }
 
   @RoutePermission('find-product')
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.productsService.findOne(+id);
+    return this.findOneProductUseCase.execute(id);
   }
 
   @RoutePermission('find-products-by-supplier')
   @Get('/supplier/:id')
-  findBySupplier(@Param('id') id: string) {
-    return this.productsService.findBySupplier(+id);
+  findBySupplier(@Param('id') supplierId: string) {
+    return this.findBySupplierUseCase.execute(supplierId);
   }
 
   @RoutePermission('update-product')
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productsService.update(+id, updateProductDto);
+    return this.updateProductUseCase.execute(id, updateProductDto);
   }
 
   @RoutePermission('delete-product')
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.productsService.remove(+id);
+    return this.removeProductUseCase.execute(id);
   }
 }
