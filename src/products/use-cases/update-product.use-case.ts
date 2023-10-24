@@ -8,12 +8,12 @@ import { ProductsService } from '../service/products.service';
 export class UpdateProductUseCase {
   constructor(private productsService: ProductsService) {}
 
-  async execute(id: string, productData: UpdateProductDto) {
-    if (isNaN(+id)) throw new BadFormatError('id');
+  async execute(id: number, productData: UpdateProductDto) {
+    if (isNaN(id)) throw new BadFormatError('id');
 
-    const productExists = await this.productsService.findOne(+id);
+    const productExists = await this.productsService.findOne(id);
     if (!productExists) throw new NotFoundProductError();
 
-    return await this.productsService.update(+id, productData);
+    return await this.productsService.update(id, productData);
   }
 }

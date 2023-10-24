@@ -1,9 +1,29 @@
+import { NotFoundSupplierError } from '@/common/error/not-found-supplier.error';
 import { CreateProductDto } from '@/products/dto/create-product.dto';
 
 export const createProductTest = () => {
-  it('should validate fields', () => {});
-  it('should validate business rules', () => {});
+  // TEST: "supplierId" should not exist, should throw "NotFoundSupplierError()"
+  it('should validate business rules', validateBusinessRules);
+
+  // TEST: should create product, no errors
   it('should create product', createProduct);
+};
+
+const validateBusinessRules = async () => {
+  try {
+    expect.assertions(1);
+    const productMock: CreateProductDto = {
+      supplierId: 0,
+      name: 'name test',
+      description: 'description test',
+      stock: 1,
+      price: 1,
+      discount: 1,
+    };
+    await global.__CONTROLLER__.create(productMock);
+  } catch (error) {
+    expect(error).toStrictEqual(new NotFoundSupplierError());
+  }
 };
 
 const createProduct = async () => {

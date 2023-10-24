@@ -11,12 +11,12 @@ export class FindBySupplierUseCase {
     private suppliersService: SuppliersService,
   ) {}
 
-  async execute(supplierId: string) {
-    if (isNaN(+supplierId)) throw new BadFormatError('supplierId');
+  async execute(supplierId: number) {
+    if (isNaN(supplierId)) throw new BadFormatError('supplierId');
 
-    const supplierExists = await this.suppliersService.findOne(+supplierId);
+    const supplierExists = await this.suppliersService.findOne(supplierId);
     if (!supplierExists) throw new NotFoundSupplierError();
 
-    return await this.productsService.findBySupplier(+supplierId);
+    return await this.productsService.findBySupplier(supplierId);
   }
 }

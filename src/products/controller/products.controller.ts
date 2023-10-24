@@ -47,24 +47,24 @@ export class ProductsController {
   @RoutePermission('find-product')
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.findOneProductUseCase.execute(id);
+    return this.findOneProductUseCase.execute(+id);
   }
 
   @RoutePermission('find-products-by-supplier')
   @Get('/supplier/:id')
   findBySupplier(@Param('id') supplierId: string) {
-    return this.findBySupplierUseCase.execute(supplierId);
+    return this.findBySupplierUseCase.execute(+supplierId);
   }
 
   @RoutePermission('update-product')
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.updateProductUseCase.execute(id, updateProductDto);
+    return this.updateProductUseCase.execute(+id, updateProductDto);
   }
 
   @RoutePermission('delete-product')
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.removeProductUseCase.execute(id);
+    return this.removeProductUseCase.execute(+id);
   }
 }
