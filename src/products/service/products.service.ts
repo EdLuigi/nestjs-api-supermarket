@@ -50,12 +50,6 @@ export class ProductsService {
   }
 
   async remove(id: number) {
-    const product = await this.prisma.product.findFirst({
-      where: { id },
-    });
-
-    if (!product) return;
-
     await this.prisma.product.delete({
       where: { id },
     });

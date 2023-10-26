@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@/prisma/prisma.service';
+import { Injectable } from '@nestjs/common';
 import { CreateSupplierDto } from '../dto/create-supplier.dto';
 import { UpdateSupplierDto } from '../dto/update-supplier.dto';
 
@@ -40,12 +40,6 @@ export class SuppliersService {
   }
 
   async remove(id: number) {
-    const supplier = await this.prisma.supplier.findFirst({
-      where: { id },
-    });
-
-    if (!supplier) return;
-
     await this.prisma.supplier.delete({
       where: { id },
     });

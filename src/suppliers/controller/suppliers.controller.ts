@@ -1,3 +1,6 @@
+import { RoutePermission } from '@/auth/decorator/route-permission.decorator';
+import { JwtGuard } from '@/auth/guard/jwt.guard';
+import { UserHasPermissionGuard } from '@/auth/guard/route-permission.guard';
 import {
   Body,
   Controller,
@@ -8,34 +11,41 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { JwtGuard } from '@/auth/guard/jwt.guard';
-import { UserHasPermissionGuard } from '@/auth/guard/route-permission.guard';
 import { CreateSupplierDto } from '../dto/create-supplier.dto';
 import { UpdateSupplierDto } from '../dto/update-supplier.dto';
-import { SuppliersService } from '../service/suppliers.service';
-import { RoutePermission } from '@/auth/decorator/route-permission.decorator';
+import { CreateSupplierUseCase } from '../use-cases/create-supplier.use-case';
+import { FindAllSuppliersUseCase } from '../use-cases/find-all-suppliers.use-case';
+import { FindOneSupplierUseCase } from '../use-cases/find-one-supplier.use-case';
+import { RemoveSupplierUseCase } from '../use-cases/remove-supplier.use-case';
+import { UpdateSupplierUseCase } from '../use-cases/update-supplier.use-case';
 
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('suppliers')
 export class SuppliersController {
-  constructor(private readonly suppliersService: SuppliersService) {}
+  constructor(
+    private readonly createSupplierUseCase: CreateSupplierUseCase,
+    private readonly findAllSuppliersUseCase: FindAllSuppliersUseCase,
+    private readonly findOneSupplierUseCase: FindOneSupplierUseCase,
+    private readonly updateSupplierUseCase: UpdateSupplierUseCase,
+    private readonly removeSupplierUseCase: RemoveSupplierUseCase,
+  ) {}
 
   @Post()
   @RoutePermission('create-supplier')
   create(@Body() createSupplierDto: CreateSupplierDto) {
-    return this.suppliersService.create(createSupplierDto);
+    return this.createSupplierUseCase.execute(createSupplierDto);
   }
 
   @Get()
   @RoutePermission('find-all-suppliers')
   findAll() {
-    return this.suppliersService.findAll();
+    return this.findAllSuppliersUseCase.execute();
   }
 
   @Get(':id')
   @RoutePermission('find-supplier')
   findOne(@Param('id') id: string) {
-    return this.suppliersService.findOne(+id);
+    return this.findOneSupplierUseCase.execute(+id);
   }
 
   @Patch(':id')
@@ -44,12 +54,12 @@ export class SuppliersController {
     @Param('id') id: string,
     @Body() updateSupplierDto: UpdateSupplierDto,
   ) {
-    return this.suppliersService.update(+id, updateSupplierDto);
+    return this.updateSupplierUseCase.execute(+id, updateSupplierDto);
   }
 
   @Delete(':id')
   @RoutePermission('delete-supplier')
   remove(@Param('id') id: string) {
-    return this.suppliersService.remove(+id);
+    return this.removeSupplierUseCase.execute(+id);
   }
 }

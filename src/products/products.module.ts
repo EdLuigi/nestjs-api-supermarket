@@ -13,13 +13,13 @@ import { UpdateProductUseCase } from './use-cases/update-product.use-case';
   controllers: [ProductsController],
   providers: [
     ProductsService,
+    SuppliersService,
     CreateProductUseCase,
     FindAllProductsUseCase,
     FindOneProductUseCase,
     FindBySupplierUseCase,
     UpdateProductUseCase,
     RemoveProductUseCase,
-    SuppliersService,
   ],
 })
 export class ProductsModule {}
