@@ -10,6 +10,7 @@ import { SuppliersService } from '@/suppliers/service/suppliers.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductsController } from '../products.controller';
 import { createProductTest } from './create.test';
+import { findAllProductsTest } from './find-all.test';
 import { findBySupplierTest } from './find-by-supplier.test';
 import { findOneProductTest } from './find-one.test';
 import { removeProductTest } from './remove.test';
@@ -45,19 +46,9 @@ describe('ProductsController', () => {
   });
 
   describe('create()', () => createProductTest());
-
-  describe('findAll()', () => {
-    it('should find all products', async () => {
-      const products = await global.__CONTROLLER__.findAll();
-      expect(!!products).toBe(true);
-    });
-  });
-
+  describe('findAll()', () => findAllProductsTest());
   describe('findOne()', () => findOneProductTest());
-
   describe('findBySupplier()', () => findBySupplierTest());
-
   describe('update()', () => updateProductTest());
-
   describe('remove()', () => removeProductTest());
 });
