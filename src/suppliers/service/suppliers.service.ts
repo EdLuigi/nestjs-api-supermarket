@@ -44,4 +44,8 @@ export class SuppliersService {
       where: { id },
     });
   }
+
+  async findByRegistry(registry: string) {
+    return await this.prisma.supplier.findFirst({ where: { registry } });
+  }
 }
