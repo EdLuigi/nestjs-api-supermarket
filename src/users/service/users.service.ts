@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@/prisma/prisma.service';
+import { Injectable } from '@nestjs/common';
 import { UpdateUserDto } from '../dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  findAll() {
-    return this.prisma.user.findMany({
+  async findAll() {
+    return await this.prisma.user.findMany({
       orderBy: {
         id: 'asc',
       },
@@ -15,7 +15,6 @@ export class UsersService {
   }
 
   async findMe(id: number) {
-    if (isNaN(id)) return null;
     const user = await this.prisma.user.findFirst({ where: { id } });
     const userRole = await this.prisma.userRole.findFirst({
       where: { userId: id },
@@ -40,15 +39,12 @@ export class UsersService {
     };
   }
 
-  findOne(id: number) {
-    if (isNaN(id)) return null;
-    return this.prisma.user.findFirst({ where: { id } });
+  async findOne(id: number) {
+    return await this.prisma.user.findFirst({ where: { id } });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    if (isNaN(id)) return null;
-
-    return this.prisma.user.update({
+    return await this.prisma.user.update({
       where: { id },
       data: {
         ...updateUserDto,
@@ -58,13 +54,7 @@ export class UsersService {
   }
 
   async remove(id: number) {
-    if (isNaN(id)) return null;
-    const user = await this.prisma.user.findFirst({
-      where: { id },
-    });
-
-    if (!user) return;
-
+    // TODO: CREATE "REMOVE USER_ROLE" FUNCTION IN USERS_ROLES MODULE
     const userRole = await this.prisma.userRole.findFirst({
       where: { userId: id },
     });
@@ -74,4 +64,6 @@ export class UsersService {
       where: { id },
     });
   }
+
+  // TODO: CREATE "FIND BY REGISTRY" FUNCTION TO USE IN AUTH
 }

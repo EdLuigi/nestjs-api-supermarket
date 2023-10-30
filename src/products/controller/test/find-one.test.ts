@@ -21,7 +21,7 @@ const validateFields = async () => {
 
 const findFirstProduct = async () => {
   const products = await global.__CONTROLLER__.findAll();
-  const firstProduct = products[products.length - 1];
+  const firstProduct = products[0];
 
   const product = await global.__CONTROLLER__.findOne(firstProduct.id);
   expect(!!product).toBe(true);
