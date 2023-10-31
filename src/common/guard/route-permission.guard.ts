@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { PERMISSIONS_KEY } from '@/auth/decorator/route-permission.decorator';
+import { PERMISSIONS_KEY } from '@/common/decorator/route-permission.decorator';
 import { User } from '@/users/entities/user.entity';
 import { UsersService } from '@/users/service/users.service';
 

@@ -1,3 +1,6 @@
+import { RoutePermission } from '@/common/decorator/route-permission.decorator';
+import { JwtGuard } from '@/common/guard/jwt.guard';
+import { UserHasPermissionGuard } from '@/common/guard/route-permission.guard';
 import {
   Body,
   Controller,
@@ -7,9 +10,6 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { RoutePermission } from '@/auth/decorator/route-permission.decorator';
-import { JwtGuard } from '@/auth/guard/jwt.guard';
-import { UserHasPermissionGuard } from '@/auth/guard/route-permission.guard';
 import { CreateRolesPermissionDto } from '../dto/create-roles_permission.dto';
 import { RolesPermissionsService } from '../service/roles_permissions.service';
 

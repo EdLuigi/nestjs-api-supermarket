@@ -86,7 +86,7 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/../src/$1"
+      "^@/(.*)$": "<rootDir>/$1"
     },
     "globals": {
       "__CONTROLLER__": null

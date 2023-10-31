@@ -8,7 +8,7 @@ import { RemoveProductUseCase } from '@/products/use-cases/remove-product.use-ca
 import { UpdateProductUseCase } from '@/products/use-cases/update-product.use-case';
 import { SuppliersService } from '@/suppliers/service/suppliers.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { ProductsController } from '../products.controller';
+import { ProductsController } from '../controller/products.controller';
 import { createProductTest } from './create.test';
 import { findAllProductsTest } from './find-all.test';
 import { findBySupplierTest } from './find-by-supplier.test';

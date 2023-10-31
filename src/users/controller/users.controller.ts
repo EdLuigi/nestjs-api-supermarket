@@ -1,7 +1,7 @@
-import { GetUser } from '@/auth/decorator/get-user.decorator';
-import { RoutePermission } from '@/auth/decorator/route-permission.decorator';
-import { JwtGuard } from '@/auth/guard/jwt.guard';
-import { UserHasPermissionGuard } from '@/auth/guard/route-permission.guard';
+import { GetUser } from '@/common/decorator/get-user.decorator';
+import { RoutePermission } from '@/common/decorator/route-permission.decorator';
+import { JwtGuard } from '@/common/guard/jwt.guard';
+import { UserHasPermissionGuard } from '@/common/guard/route-permission.guard';
 import {
   Body,
   Controller,
