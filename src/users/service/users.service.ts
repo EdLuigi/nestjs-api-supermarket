@@ -65,5 +65,7 @@ export class UsersService {
     });
   }
 
-  // TODO: CREATE "FIND BY REGISTRY" FUNCTION TO USE IN AUTH
+  async findByRegistry(registry: string) {
+    return await this.prisma.user.findFirst({ where: { registry } });
+  }
 }
