@@ -1,4 +1,5 @@
 import { AppModule } from '@/app.module';
+import { UsersRolesService } from '@/users_roles/service/users_roles.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from '../controller/users.controller';
 import { UsersService } from '../service/users.service';
@@ -21,6 +22,7 @@ describe('UsersController', () => {
       controllers: [UsersController],
       providers: [
         UsersService,
+        UsersRolesService,
         FindMeUseCase,
         FindAllUsersUseCase,
         FindUserUseCase,

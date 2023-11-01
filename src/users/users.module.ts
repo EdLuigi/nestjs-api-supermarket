@@ -1,3 +1,4 @@
+import { UsersRolesService } from '@/users_roles/service/users_roles.service';
 import { Global, Module } from '@nestjs/common';
 import { UsersController } from './controller/users.controller';
 import { UsersService } from './service/users.service';
@@ -12,6 +13,7 @@ import { UpdateUserUseCase } from './use-case/update-user.use-case';
   controllers: [UsersController],
   providers: [
     UsersService,
+    UsersRolesService,
     FindMeUseCase,
     FindAllUsersUseCase,
     FindUserUseCase,

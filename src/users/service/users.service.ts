@@ -54,12 +54,6 @@ export class UsersService {
   }
 
   async remove(id: number) {
-    // TODO: CREATE "REMOVE USER_ROLE" FUNCTION IN USERS_ROLES MODULE
-    const userRole = await this.prisma.userRole.findFirst({
-      where: { userId: id },
-    });
-    await this.prisma.userRole.delete({ where: { id: userRole.id } });
-
     await this.prisma.user.delete({
       where: { id },
     });

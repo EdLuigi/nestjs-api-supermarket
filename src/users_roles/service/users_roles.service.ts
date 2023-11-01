@@ -44,7 +44,6 @@ export class UsersRolesService {
   }
 
   async findByUserId(userId: number) {
-    if (isNaN(userId)) return null;
     return await this.prisma.userRole.findFirst({ where: { userId } });
   }
 
@@ -58,15 +57,7 @@ export class UsersRolesService {
     });
   }
 
-  // TODO: USE WHEN USER IS REMOVED
   async remove(id: number) {
-    if (isNaN(id)) return null;
-    const permission = await this.prisma.userRole.findFirst({
-      where: { id },
-    });
-
-    if (!permission) return;
-
     await this.prisma.userRole.delete({
       where: { id },
     });
