@@ -27,7 +27,7 @@ const validateBusinessRules = async () => {
   try {
     expect.assertions(1);
     const id = '99999';
-    await global.__CONTROLLER__.remove(+id);
+    await global.__CONTROLLER__.remove(id);
   } catch (error) {
     expect(error).toStrictEqual(new NotFoundUserError());
   }

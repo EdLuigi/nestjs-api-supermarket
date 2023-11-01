@@ -36,7 +36,7 @@ const validateBusinessRules = async () => {
   try {
     expect.assertions(1);
     const id = '99999';
-    await global.__CONTROLLER__.update(+id, productMock);
+    await global.__CONTROLLER__.update(id, productMock);
   } catch (error) {
     expect(error).toStrictEqual(new NotFoundProductError());
   }

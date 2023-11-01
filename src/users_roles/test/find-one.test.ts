@@ -1,11 +1,11 @@
 import { BadFormatError } from '@/common/error/bad-format.error';
 
-export const findOneUserTest = () => {
+export const findOneUserRoleTest = () => {
   // TEST: "id" in wrong format, should throw "BadFormatError()"
   it('should validate fields', validateFields);
 
-  // TEST: should find first user, no erros
-  it('should find first user', findFirstUser);
+  // TEST: should find first userRole, no erros
+  it('should find first user role', findFirstUserRole);
 };
 
 const validateFields = async () => {
@@ -19,10 +19,10 @@ const validateFields = async () => {
   }
 };
 
-const findFirstUser = async () => {
-  const users = await global.__CONTROLLER__.findAll();
-  const firstUser = users[0];
+const findFirstUserRole = async () => {
+  const usersRoles = await global.__CONTROLLER__.findAll();
+  const firstUserRole = usersRoles[0];
 
-  const user = await global.__CONTROLLER__.findOne(firstUser.id);
-  expect(user.id === firstUser.id).toBe(true);
+  const userRole = await global.__CONTROLLER__.findOne(firstUserRole.id);
+  expect(userRole.id === firstUserRole.id).toBe(true);
 };

@@ -24,5 +24,5 @@ const findFirstSupplier = async () => {
   const firstSupplier = suppliers[0];
 
   const supplier = await global.__CONTROLLER__.findOne(firstSupplier.id);
-  expect(!!supplier).toBe(true);
+  expect(supplier.id === firstSupplier.id).toBe(true);
 };
