@@ -35,6 +35,7 @@ export class ProductsService {
     return await this.prisma.product.findMany({ where: { supplierId: id } });
   }
 
+  // TODO: VALIDATE NEW FIELDS ARE NOT UNDEFINED/NULL
   async update(id: number, dto: UpdateProductDto) {
     return await this.prisma.product.update({
       where: { id },

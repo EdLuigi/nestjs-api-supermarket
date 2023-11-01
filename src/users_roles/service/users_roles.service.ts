@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@/prisma/prisma.service';
 import { RolesService } from '@/roles/service/roles.service';
 import { UsersService } from '@/users/service/users.service';
+import { Injectable } from '@nestjs/common';
 import { CreateUsersRoleDto } from '../dto/create-users_role.dto';
 import { UpdateUsersRoleDto } from '../dto/update-users_role.dto';
 
@@ -13,6 +13,7 @@ export class UsersRolesService {
     private readonly rolesService: RolesService,
   ) {}
 
+  // TODO: REMOVE VALIDATIONS, REFACTOR ACCORDINGLY TO SIGNUP
   async create(createUsersRoleDto: CreateUsersRoleDto) {
     const user = await this.usersService.findOne(createUsersRoleDto.userId);
     if (!user) return "user doesn't exist";
@@ -34,44 +35,30 @@ export class UsersRolesService {
     });
   }
 
-  findAll() {
-    return this.prisma.userRole.findMany();
+  async findAll() {
+    return await this.prisma.userRole.findMany();
   }
 
-  findOne(id: number) {
-    if (isNaN(id)) return null;
-    return this.prisma.userRole.findFirst({ where: { id } });
+  async findOne(id: number) {
+    return await this.prisma.userRole.findFirst({ where: { id } });
   }
 
-  findByUserId(userId: number) {
+  async findByUserId(userId: number) {
     if (isNaN(userId)) return null;
-    return this.prisma.userRole.findFirst({ where: { userId } });
+    return await this.prisma.userRole.findFirst({ where: { userId } });
   }
 
-  async update(userId: number, updateUserRoleDto: UpdateUsersRoleDto) {
-    if (isNaN(userId)) return null;
-
-    const user = await this.usersService.findOne(userId);
-    if (!user) return "user doesn't exist";
-
-    const role = await this.rolesService.findOne(updateUserRoleDto.roleId);
-    if (!role) return "role doesn't exist";
-
-    const userRole = await this.prisma.userRole.findFirst({
-      where: { userId },
-    });
-
-    if (!userRole) return "user role doesn't exist";
-
-    return this.prisma.userRole.update({
-      where: { id: userRole.id },
+  async update(userRoleId: number, dto: UpdateUsersRoleDto) {
+    return await this.prisma.userRole.update({
+      where: { id: userRoleId },
       data: {
-        ...updateUserRoleDto,
+        roleId: dto.roleId,
         updatedAt: new Date(),
       },
     });
   }
 
+  // TODO: USE WHEN USER IS REMOVED
   async remove(id: number) {
     if (isNaN(id)) return null;
     const permission = await this.prisma.userRole.findFirst({
