@@ -1,37 +1,36 @@
+import { PrismaService } from '@/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { CreatePermissionDto } from '../dto/create-permission.dto';
 import { UpdatePermissionDto } from '../dto/update-permission.dto';
-import { PrismaService } from '@/prisma/prisma.service';
 
 @Injectable()
 export class PermissionsService {
   constructor(private prisma: PrismaService) {}
 
   async create(dto: CreatePermissionDto) {
-    const permission = await this.prisma.permission.create({
+    return await this.prisma.permission.create({
       data: {
         name: dto.name,
         description: dto.description,
         createdAt: new Date(),
       },
     });
-
-    return permission;
   }
 
-  findAll() {
-    return this.prisma.permission.findMany();
+  async findAll() {
+    return await this.prisma.permission.findMany();
   }
 
-  findOne(id: number) {
-    if (isNaN(id)) return null;
-    return this.prisma.permission.findFirst({ where: { id } });
+  async findOne(id: number) {
+    return await this.prisma.permission.findFirst({ where: { id } });
   }
 
-  update(id: number, updatePermissionDto: UpdatePermissionDto) {
-    if (isNaN(id)) return null;
+  async findByName(name: string) {
+    return await this.prisma.permission.findFirst({ where: { name } });
+  }
 
-    return this.prisma.permission.update({
+  async update(id: number, updatePermissionDto: UpdatePermissionDto) {
+    return await this.prisma.permission.update({
       where: { id },
       data: {
         ...updatePermissionDto,
@@ -41,13 +40,6 @@ export class PermissionsService {
   }
 
   async remove(id: number) {
-    if (isNaN(id)) return null;
-    const permission = await this.prisma.permission.findFirst({
-      where: { id },
-    });
-
-    if (!permission) return;
-
     await this.prisma.permission.delete({
       where: { id },
     });

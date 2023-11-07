@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { CreateRolesPermissionDto } from '../dto/create-roles_permission.dto';
+import { PermissionsService } from '@/permissions/service/permissions.service';
 import { PrismaService } from '@/prisma/prisma.service';
 import { RolesService } from '@/roles/service/roles.service';
-import { PermissionsService } from '@/permissions/service/permissions.service';
+import { Injectable } from '@nestjs/common';
+import { CreateRolesPermissionDto } from '../dto/create-roles_permission.dto';
 
 @Injectable()
 export class RolesPermissionsService {
@@ -38,7 +38,10 @@ export class RolesPermissionsService {
 
   findOne(id: number) {
     if (isNaN(id)) return null;
-    return this.prisma.rolePermission.findFirst({ where: { id } });
+  }
+
+  async findByPermissionId(permissionId: number) {
+    return this.prisma.rolePermission.findMany({ where: { permissionId } });
   }
 
   async remove(id: number) {
