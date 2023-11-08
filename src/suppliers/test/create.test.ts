@@ -3,13 +3,13 @@ import { CreateSupplierDto } from '../dto/create-supplier.dto';
 
 export const createSupplierTest = () => {
   // TEST: "resgistry" duplicate, should throw "DuplicateKeyValueError()"
-  it('should validate fields', validateFields);
+  it('should validate business rules', validateBusinessRules);
 
   // TEST: should create supplier, no errors
   it('should create supplier', createSupplier);
 };
 
-const validateFields = async () => {
+const validateBusinessRules = async () => {
   try {
     expect.assertions(1);
     const allSuppliers = await global.__CONTROLLER__.findAll();

@@ -7,7 +7,7 @@ export const removeSupplierTest = () => {
   it('should validate fields', validateFields);
 
   // TEST: "id" should not exist, should throw "NotFoundSupplierError()",
-  //       Supplier should have products, should throw "ForeignKeySupplierError()"
+  //       Supplier should have foreign keys, should throw "ForeignKeySupplierError()"
   it('should validate business rules', validateBusinessRules);
 
   // TEST: should remove last supplier, no erros
