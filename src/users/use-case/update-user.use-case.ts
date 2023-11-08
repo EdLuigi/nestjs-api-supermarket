@@ -9,7 +9,7 @@ export class UpdateUserUseCase {
   constructor(private usersService: UsersService) {}
 
   async execute(id: number, updateUserData: UpdateUserDto) {
-    if (isNaN(id)) throw new BadFormatError('id');
+    if (Number.isInteger(+id)) throw new BadFormatError('id');
 
     const userExists = await this.usersService.findOne(id);
     if (!userExists) throw new NotFoundUserError();

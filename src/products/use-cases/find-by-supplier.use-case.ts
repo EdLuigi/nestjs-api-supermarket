@@ -12,7 +12,7 @@ export class FindBySupplierUseCase {
   ) {}
 
   async execute(supplierId: number) {
-    if (isNaN(supplierId)) throw new BadFormatError('supplierId');
+    if (Number.isInteger(+supplierId)) throw new BadFormatError('supplierId');
 
     const supplierExists = await this.suppliersService.findOne(supplierId);
     if (!supplierExists) throw new NotFoundSupplierError();

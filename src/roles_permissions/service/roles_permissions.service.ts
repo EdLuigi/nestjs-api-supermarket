@@ -37,7 +37,7 @@ export class RolesPermissionsService {
   }
 
   findOne(id: number) {
-    if (isNaN(id)) return null;
+    if (Number.isInteger(+id)) return null;
   }
 
   async findByPermissionId(permissionId: number) {
@@ -45,7 +45,7 @@ export class RolesPermissionsService {
   }
 
   async remove(id: number) {
-    if (isNaN(id)) return null;
+    if (Number.isInteger(+id)) return null;
     const rolePermission = await this.prisma.rolePermission.findFirst({
       where: { id },
     });

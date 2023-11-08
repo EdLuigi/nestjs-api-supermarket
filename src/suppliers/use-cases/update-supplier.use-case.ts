@@ -9,7 +9,7 @@ export class UpdateSupplierUseCase {
   constructor(private suppliersService: SuppliersService) {}
 
   async execute(id: number, supplierData: UpdateSupplierDto) {
-    if (isNaN(id)) throw new BadFormatError('id');
+    if (Number.isInteger(+id)) throw new BadFormatError('id');
 
     const supplierExists = await this.suppliersService.findOne(id);
     if (!supplierExists) throw new NotFoundSupplierError();

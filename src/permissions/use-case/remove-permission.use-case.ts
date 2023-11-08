@@ -13,7 +13,7 @@ export class RemovePermissionUseCase {
   ) {}
 
   async execute(id: number) {
-    if (isNaN(id)) throw new BadFormatError('id');
+    if (Number.isInteger(+id)) throw new BadFormatError('id');
 
     const permissionExists = await this.permissionsService.findOne(id);
     if (!permissionExists) throw new NotFoundPermissionError();

@@ -7,7 +7,7 @@ export class FindOneProductUseCase {
   constructor(private productsService: ProductsService) {}
 
   async execute(id: number) {
-    if (isNaN(id)) throw new BadFormatError('id');
+    if (Number.isInteger(+id)) throw new BadFormatError('id');
 
     return await this.productsService.findOne(id);
   }

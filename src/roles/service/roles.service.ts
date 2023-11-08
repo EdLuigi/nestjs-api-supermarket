@@ -24,12 +24,12 @@ export class RolesService {
   }
 
   findOne(id: number) {
-    if (isNaN(id)) return null;
+    if (Number.isInteger(+id)) return null;
     return this.prisma.role.findFirst({ where: { id } });
   }
 
   update(id: number, updateRoleDto: UpdateRoleDto) {
-    if (isNaN(id)) return null;
+    if (Number.isInteger(+id)) return null;
 
     return this.prisma.role.update({
       where: { id },
@@ -41,7 +41,7 @@ export class RolesService {
   }
 
   async remove(id: number) {
-    if (isNaN(id)) return null;
+    if (Number.isInteger(+id)) return null;
     const role = await this.prisma.role.findFirst({
       where: { id },
     });
