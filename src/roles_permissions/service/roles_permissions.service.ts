@@ -44,6 +44,10 @@ export class RolesPermissionsService {
     return this.prisma.rolePermission.findMany({ where: { permissionId } });
   }
 
+  async findByRoleId(roleId: number) {
+    return await this.prisma.rolePermission.findFirst({ where: { roleId } });
+  }
+
   async remove(id: number) {
     if (Number.isInteger(+id)) return null;
     const rolePermission = await this.prisma.rolePermission.findFirst({

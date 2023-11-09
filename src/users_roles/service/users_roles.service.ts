@@ -47,6 +47,10 @@ export class UsersRolesService {
     return await this.prisma.userRole.findFirst({ where: { userId } });
   }
 
+  async findByRoleId(roleId: number) {
+    return await this.prisma.userRole.findFirst({ where: { roleId } });
+  }
+
   async update(userRoleId: number, dto: UpdateUsersRoleDto) {
     return await this.prisma.userRole.update({
       where: { id: userRoleId },
