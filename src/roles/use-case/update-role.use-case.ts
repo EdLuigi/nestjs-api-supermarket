@@ -9,7 +9,7 @@ export class UpdateRoleUseCase {
   constructor(private rolesService: RolesService) {}
 
   async execute(id: number, updateRoleData: UpdateRoleDto) {
-    if (Number.isInteger(+id)) throw new BadFormatError('id');
+    if (!Number.isInteger(+id)) throw new BadFormatError('id');
 
     const roleExists = await this.rolesService.findOne(id);
     if (!roleExists) throw new NotFoundRoleError();

@@ -8,7 +8,7 @@ export class RemoveProductUseCase {
   constructor(private productsService: ProductsService) {}
 
   async execute(id: number) {
-    if (Number.isInteger(+id)) throw new BadFormatError('id');
+    if (!Number.isInteger(+id)) throw new BadFormatError('id');
 
     const productExists = await this.productsService.findOne(id);
     if (!productExists) throw new NotFoundProductError();

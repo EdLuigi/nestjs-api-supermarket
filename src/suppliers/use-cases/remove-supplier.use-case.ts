@@ -13,7 +13,7 @@ export class RemoveSupplierUseCase {
   ) {}
 
   async execute(id: number) {
-    if (Number.isInteger(+id)) throw new BadFormatError('id');
+    if (!Number.isInteger(+id)) throw new BadFormatError('id');
 
     const supplierExists = await this.suppliersService.findOne(id);
     if (!supplierExists) throw new NotFoundSupplierError();

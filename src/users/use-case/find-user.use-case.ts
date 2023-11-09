@@ -7,7 +7,7 @@ export class FindUserUseCase {
   constructor(private usersService: UsersService) {}
 
   async execute(id: number) {
-    if (Number.isInteger(+id)) throw new BadFormatError('id');
+    if (!Number.isInteger(+id)) throw new BadFormatError('id');
 
     return await this.usersService.findOne(id);
   }

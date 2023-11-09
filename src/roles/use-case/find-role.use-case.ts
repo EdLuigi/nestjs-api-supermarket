@@ -7,7 +7,7 @@ export class FindOneRoleUseCase {
   constructor(private rolesService: RolesService) {}
 
   async execute(id: number) {
-    if (Number.isInteger(+id)) throw new BadFormatError('id');
+    if (!Number.isInteger(+id)) throw new BadFormatError('id');
 
     return await this.rolesService.findOne(id);
   }

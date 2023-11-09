@@ -17,7 +17,7 @@ export class UpdateUserRoleUseCase {
   ) {}
 
   async execute(id: number, updateUserRoleData: UpdateUsersRoleDto) {
-    if (Number.isInteger(+id)) throw new BadFormatError('id');
+    if (!Number.isInteger(+id)) throw new BadFormatError('id');
 
     const userExists = await this.usersService.findOne(id);
     if (!userExists) throw new NotFoundUserError();

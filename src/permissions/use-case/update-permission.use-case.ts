@@ -9,7 +9,7 @@ export class UpdatePermissionUseCase {
   constructor(private permissionsService: PermissionsService) {}
 
   async execute(id: number, permissionData: UpdatePermissionDto) {
-    if (Number.isInteger(+id)) throw new BadFormatError('id');
+    if (!Number.isInteger(+id)) throw new BadFormatError('id');
 
     const permissionExists = await this.permissionsService.findOne(id);
     if (!permissionExists) throw new NotFoundPermissionError();
