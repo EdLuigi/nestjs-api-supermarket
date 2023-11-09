@@ -8,8 +8,8 @@ export const removeUserTest = () => {
   // TEST: "id" should not exist, should throw "NotFoundUserError()"
   it('should validate business rules', validateBusinessRules);
 
-  // TEST: should remove last user, no erros
-  it('should remove last user', removeLastUser);
+  // TEST: should remove first user, no erros
+  it('should remove first user', removeFirstUser);
 };
 
 const validateFields = async () => {
@@ -33,9 +33,9 @@ const validateBusinessRules = async () => {
   }
 };
 
-const removeLastUser = async () => {
+const removeFirstUser = async () => {
   const users = await global.__CONTROLLER__.findAll();
-  const lastUser = users[users.length - 1];
+  const firstUser = users[0];
 
-  await global.__CONTROLLER__.remove(lastUser.id);
+  await global.__CONTROLLER__.remove(firstUser.id);
 };

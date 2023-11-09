@@ -3,7 +3,7 @@ import { SigninDto } from '../dto/signin.dto';
 import { IncorrectCredentialsError } from '@/common/error/incorrect-credentials.error';
 
 const authMock: SigninDto = {
-  registry: 'user1',
+  registry: 'user2',
   password: '123',
 };
 

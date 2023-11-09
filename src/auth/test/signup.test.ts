@@ -22,7 +22,7 @@ const validateBusinessRules = async () => {
 
     const registryWRONG: SignupDto = {
       ...authMock,
-      registry: 'user1',
+      registry: 'user2',
     };
     await global.__CONTROLLER__.signup(registryWRONG);
   } catch (error) {

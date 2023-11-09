@@ -8,8 +8,8 @@ export const findByUser = () => {
   // TEST: "id" should not exist, should throw "NotFoundUserError()"
   it('should validate business rules', validateBusinessRules);
 
-  // TEST: should first user userRule, no erros
-  it('should first user userRule', findFirstUserRole);
+  // TEST: should find first user userRole, no erros
+  it('should find first user userRole', findFirstUserRole);
 };
 
 const validateFields = async () => {
