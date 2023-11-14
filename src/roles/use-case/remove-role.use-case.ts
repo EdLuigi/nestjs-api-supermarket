@@ -21,10 +21,10 @@ export class RemoveRoleUseCase {
     if (!roleExists) throw new NotFoundRoleError();
 
     const hasForeignKeys1 = await this.usersRolesService.findByRoleId(id);
-    if (hasForeignKeys1) throw new ForeignKeyRoleError();
+    if (hasForeignKeys1.length > 0) throw new ForeignKeyRoleError();
 
     const hasForeignKeys2 = await this.rolesPermissionsService.findByRoleId(id);
-    if (hasForeignKeys2) throw new ForeignKeyRoleError();
+    if (hasForeignKeys2.length > 0) throw new ForeignKeyRoleError();
 
     return await this.rolesService.remove(id);
   }
