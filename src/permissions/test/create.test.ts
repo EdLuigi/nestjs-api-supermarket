@@ -1,18 +1,15 @@
-import { NotFoundSupplierError } from '@/common/error/not-found-supplier.error';
-import { CreateProductDto } from '@/products/dto/create-product.dto';
-import { CreateSupplierDto } from '@/suppliers/dto/create-supplier.dto';
-import { CreatePermissionDto } from '../dto/create-permission.dto';
 import { DuplicateKeyValueError } from '@/common/error/duplicate-key-value.error';
+import { CreatePermissionDto } from '../dto/create-permission.dto';
 
 export const createPermissionTest = () => {
   // TEST: "name" duplicate, should throw "DuplicateKeyValueError()"
-  it('should validate fields', validateFields);
+  it('should validate business rules', validateBusinessRules);
 
   // TEST: should create permission, no errors
   it('should create permission', createPermission);
 };
 
-const validateFields = async () => {
+const validateBusinessRules = async () => {
   try {
     expect.assertions(1);
     const allPermissions = await global.__CONTROLLER__.findAll();
