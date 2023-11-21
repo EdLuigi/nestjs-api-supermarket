@@ -1,3 +1,4 @@
+import { RoleType } from '@/common/role-types';
 import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateUsersRoleDto {
@@ -7,5 +8,5 @@ export class CreateUsersRoleDto {
 
   @IsNumber()
   @IsNotEmpty()
-  roleId: number;
+  roleType: RoleType;
 }

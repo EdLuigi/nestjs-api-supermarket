@@ -1,6 +1,8 @@
+import { RoleType } from '@/common/role-types';
+
 export class Role {
   id?: number;
-  name: string;
+  name: RoleType;
   description?: string;
   createdAt: Date;
   updatedAt?: Date;

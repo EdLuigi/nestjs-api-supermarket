@@ -24,8 +24,7 @@ export class SignupUseCase {
 
     const newUserRoleData: CreateUsersRoleDto = {
       userId: newUser.id,
-      // TODO: SPECIFY "roleId" TYPES IN "CreateUsersRoleDto"
-      roleId: 3,
+      roleType: 'Employee',
     };
 
     await this.usersRolesService.create(newUserRoleData);
