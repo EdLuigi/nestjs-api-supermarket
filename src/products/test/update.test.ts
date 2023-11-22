@@ -3,7 +3,6 @@ import { NotFoundProductError } from '@/common/error/not-found-product.error';
 import { UpdateProductDto } from '@/products/dto/update-product.dto';
 
 const productMock: UpdateProductDto = {
-  name: 'name updated',
   description: 'description updated',
   stock: 2,
   price: 2,
