@@ -7,6 +7,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   UseGuards,
@@ -46,25 +47,28 @@ export class ProductsController {
 
   @RoutePermission('find-product')
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.findOneProductUseCase.execute(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.findOneProductUseCase.execute(id);
   }
 
   @RoutePermission('find-products-by-supplier')
   @Get('/supplier/:id')
-  findBySupplier(@Param('id') supplierId: string) {
-    return this.findBySupplierUseCase.execute(+supplierId);
+  findBySupplier(@Param('id', ParseIntPipe) supplierId: number) {
+    return this.findBySupplierUseCase.execute(supplierId);
   }
 
   @RoutePermission('update-product')
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.updateProductUseCase.execute(+id, updateProductDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateProductDto: UpdateProductDto,
+  ) {
+    return this.updateProductUseCase.execute(id, updateProductDto);
   }
 
   @RoutePermission('delete-product')
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.removeProductUseCase.execute(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.removeProductUseCase.execute(id);
   }
 }

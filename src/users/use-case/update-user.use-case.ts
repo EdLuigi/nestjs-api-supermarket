@@ -1,4 +1,3 @@
-import { BadFormatError } from '@/common/error/bad-format.error';
 import { NotFoundUserError } from '@/common/error/not-found-user.error';
 import { Injectable } from '@nestjs/common';
 import { UpdateUserDto } from '../dto/update-user.dto';
@@ -9,8 +8,6 @@ export class UpdateUserUseCase {
   constructor(private usersService: UsersService) {}
 
   async execute(id: number, updateUserData: UpdateUserDto) {
-    if (!Number.isInteger(+id)) throw new BadFormatError('id');
-
     const userExists = await this.usersService.findOne(id);
     if (!userExists) throw new NotFoundUserError();
 

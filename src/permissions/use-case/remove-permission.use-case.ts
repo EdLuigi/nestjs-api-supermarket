@@ -1,4 +1,3 @@
-import { BadFormatError } from '@/common/error/bad-format.error';
 import { ForeignKeyPermissionError } from '@/common/error/foreign-key-permission-error';
 import { NotFoundPermissionError } from '@/common/error/not-found-permission.error';
 import { RolesPermissionsService } from '@/roles_permissions/service/roles_permissions.service';
@@ -13,8 +12,6 @@ export class RemovePermissionUseCase {
   ) {}
 
   async execute(id: number) {
-    if (!Number.isInteger(+id)) throw new BadFormatError('id');
-
     const permissionExists = await this.permissionsService.findOne(id);
     if (!permissionExists) throw new NotFoundPermissionError();
 

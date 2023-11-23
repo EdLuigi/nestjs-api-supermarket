@@ -1,4 +1,3 @@
-import { BadFormatError } from '@/common/error/bad-format.error';
 import { NotFoundUserError } from '@/common/error/not-found-user.error';
 import { UsersRolesService } from '@/users_roles/service/users_roles.service';
 import { Injectable } from '@nestjs/common';
@@ -12,8 +11,6 @@ export class RemoveUserUseCase {
   ) {}
 
   async execute(id: number) {
-    if (!Number.isInteger(+id)) throw new BadFormatError('id');
-
     const userExists = await this.usersService.findOne(id);
     if (!userExists) throw new NotFoundUserError();
 

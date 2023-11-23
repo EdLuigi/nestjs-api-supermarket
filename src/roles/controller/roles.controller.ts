@@ -7,6 +7,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   UseGuards,
@@ -44,19 +45,22 @@ export class RolesController {
 
   @Get(':id')
   @RoutePermission('find-role')
-  findOne(@Param('id') id: string) {
-    return this.findOneRoleUseCase.execute(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.findOneRoleUseCase.execute(id);
   }
 
   @Patch(':id')
   @RoutePermission('update-role')
-  update(@Param('id') id: string, @Body() updateRoleDto: UpdateRoleDto) {
-    return this.updateRoleUseCase.execute(+id, updateRoleDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateRoleDto: UpdateRoleDto,
+  ) {
+    return this.updateRoleUseCase.execute(id, updateRoleDto);
   }
 
   @Delete(':id')
   @RoutePermission('delete-role')
-  remove(@Param('id') id: string) {
-    return this.removeRoleUseCase.execute(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.removeRoleUseCase.execute(id);
   }
 }

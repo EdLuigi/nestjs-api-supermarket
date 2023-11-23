@@ -7,6 +7,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   UseGuards,
@@ -44,22 +45,22 @@ export class PermissionsController {
 
   @Get(':id')
   @RoutePermission('find-permission')
-  findOne(@Param('id') id: string) {
-    return this.findOnePermissionUseCase.execute(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.findOnePermissionUseCase.execute(id);
   }
 
   @Patch(':id')
   @RoutePermission('update-permission')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updatePermissionDto: UpdatePermissionDto,
   ) {
-    return this.updatePermissionUseCase.execute(+id, updatePermissionDto);
+    return this.updatePermissionUseCase.execute(id, updatePermissionDto);
   }
 
   @Delete(':id')
   @RoutePermission('delete-permission')
-  remove(@Param('id') id: string) {
-    return this.removePermissionUseCase.execute(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.removePermissionUseCase.execute(id);
   }
 }

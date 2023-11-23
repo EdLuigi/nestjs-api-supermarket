@@ -8,6 +8,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   UseGuards,
 } from '@nestjs/common';
@@ -31,8 +32,8 @@ export class UsersController {
 
   @Get('me')
   @RoutePermission('find-me')
-  findMe(@GetUser('id') userId: string) {
-    return this.findMeUseCase.execute(+userId);
+  findMe(@GetUser('id') userId: number) {
+    return this.findMeUseCase.execute(userId);
   }
 
   @Get()
@@ -43,8 +44,8 @@ export class UsersController {
 
   @Get(':id')
   @RoutePermission('find-user')
-  findOne(@Param('id') id: string) {
-    return this.findUserUseCase.execute(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.findUserUseCase.execute(id);
   }
 
   @Patch()
@@ -53,18 +54,21 @@ export class UsersController {
     @GetUser('id') userId: number,
     @Body() updateUserDto: UpdateUserDto,
   ) {
-    return this.updateUserUseCase.execute(+userId, updateUserDto);
+    return this.updateUserUseCase.execute(userId, updateUserDto);
   }
 
   @Patch(':id')
   @RoutePermission('update-user')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.updateUserUseCase.execute(+id, updateUserDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return this.updateUserUseCase.execute(id, updateUserDto);
   }
 
   @Delete(':id')
   @RoutePermission('delete-user')
-  remove(@Param('id') id: string) {
-    return this.removeUserUseCase.execute(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.removeUserUseCase.execute(id);
   }
 }

@@ -7,6 +7,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   UseGuards,
@@ -44,22 +45,22 @@ export class SuppliersController {
 
   @Get(':id')
   @RoutePermission('find-supplier')
-  findOne(@Param('id') id: string) {
-    return this.findOneSupplierUseCase.execute(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.findOneSupplierUseCase.execute(id);
   }
 
   @Patch(':id')
   @RoutePermission('update-supplier')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateSupplierDto: UpdateSupplierDto,
   ) {
-    return this.updateSupplierUseCase.execute(+id, updateSupplierDto);
+    return this.updateSupplierUseCase.execute(id, updateSupplierDto);
   }
 
   @Delete(':id')
   @RoutePermission('delete-supplier')
-  remove(@Param('id') id: string) {
-    return this.removeSupplierUseCase.execute(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.removeSupplierUseCase.execute(id);
   }
 }

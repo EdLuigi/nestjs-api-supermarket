@@ -1,4 +1,3 @@
-import { BadFormatError } from '@/common/error/bad-format.error';
 import { ForeignKeyRoleError } from '@/common/error/foreign-key-role-error';
 import { NotFoundRoleError } from '@/common/error/not-found-role.error';
 import { RolesPermissionsService } from '@/roles_permissions/service/roles_permissions.service';
@@ -15,8 +14,6 @@ export class RemoveRoleUseCase {
   ) {}
 
   async execute(id: number) {
-    if (!Number.isInteger(+id)) throw new BadFormatError('id');
-
     const roleExists = await this.rolesService.findOne(id);
     if (!roleExists) throw new NotFoundRoleError();
 

@@ -7,6 +7,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -40,13 +41,13 @@ export class RolesPermissionsController {
 
   @Get(':id')
   @RoutePermission('find-role-permission')
-  findOne(@Param('id') id: string) {
-    return this.findOneRolePermissionUseCase.execute(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.findOneRolePermissionUseCase.execute(id);
   }
 
   @Delete(':id')
   @RoutePermission('delete-role-permission')
-  remove(@Param('id') id: string) {
-    return this.removeRolePermissionUseCase.execute(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.removeRolePermissionUseCase.execute(id);
   }
 }

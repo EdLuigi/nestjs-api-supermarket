@@ -1,4 +1,3 @@
-import { BadFormatError } from '@/common/error/bad-format.error';
 import { NotFoundRoleError } from '@/common/error/not-found-role.error';
 import { NotFoundUserRoleError } from '@/common/error/not-found-user-role.error';
 import { NotFoundUserError } from '@/common/error/not-found-user.error';
@@ -17,8 +16,6 @@ export class UpdateUserRoleUseCase {
   ) {}
 
   async execute(id: number, updateUserRoleData: UpdateUsersRoleDto) {
-    if (!Number.isInteger(+id)) throw new BadFormatError('id');
-
     const userExists = await this.usersService.findOne(id);
     if (!userExists) throw new NotFoundUserError();
 
