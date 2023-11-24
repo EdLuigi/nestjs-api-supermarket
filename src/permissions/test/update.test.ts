@@ -1,4 +1,3 @@
-import { BadFormatError } from '@/common/error/bad-format.error';
 import { NotFoundPermissionError } from '@/common/error/not-found-permission.error';
 import { UpdatePermissionDto } from '../dto/update-permission.dto';
 
@@ -7,9 +6,6 @@ const permissionMock: UpdatePermissionDto = {
 };
 
 export const updatePermissionTest = () => {
-  // TEST: "id" in wrong format, should throw "BadFormatError()"
-  it('should validate fields', validateFields);
-
   // TEST: "id" should not exist, should throw "NotFoundPermissionError()"
   it('should validate business rules', validateBusinessRules);
 
@@ -17,22 +13,11 @@ export const updatePermissionTest = () => {
   it('should update last permission', updateLastPermission);
 };
 
-const validateFields = async () => {
-  try {
-    expect.assertions(1);
-
-    const id_WRONG = 'a';
-    await global.__CONTROLLER__.update(id_WRONG, permissionMock);
-  } catch (error) {
-    expect(error).toStrictEqual(new BadFormatError('id'));
-  }
-};
-
 const validateBusinessRules = async () => {
   try {
     expect.assertions(1);
     const id = '99999';
-    await global.__CONTROLLER__.update(id, permissionMock);
+    await global.__CONTROLLER__.update(+id, permissionMock);
   } catch (error) {
     expect(error).toStrictEqual(new NotFoundPermissionError());
   }

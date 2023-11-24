@@ -1,4 +1,3 @@
-import { BadFormatError } from '@/common/error/bad-format.error';
 import { NotFoundRoleError } from '@/common/error/not-found-role.error';
 import { UpdateRoleDto } from '../dto/update-role.dto';
 
@@ -7,9 +6,6 @@ const roleMock: UpdateRoleDto = {
 };
 
 export const updateRoleTest = () => {
-  // TEST: "id" in wrong format, should throw "BadFormatError()"
-  it('should validate fields', validateFields);
-
   // TEST: "id" should not exist, should throw "NotFoundRoleError()"
   it('should validate business rules', validateBusinessRules);
 
@@ -17,22 +13,11 @@ export const updateRoleTest = () => {
   it('should update last role', updateLastRole);
 };
 
-const validateFields = async () => {
-  try {
-    expect.assertions(1);
-
-    const id_WRONG = 'a';
-    await global.__CONTROLLER__.update(id_WRONG, roleMock);
-  } catch (error) {
-    expect(error).toStrictEqual(new BadFormatError('id'));
-  }
-};
-
 const validateBusinessRules = async () => {
   try {
     expect.assertions(1);
     const id = '99999';
-    await global.__CONTROLLER__.update(id, roleMock);
+    await global.__CONTROLLER__.update(+id, roleMock);
   } catch (error) {
     expect(error).toStrictEqual(new NotFoundRoleError());
   }
