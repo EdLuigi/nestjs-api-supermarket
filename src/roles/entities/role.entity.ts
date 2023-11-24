@@ -1,4 +1,4 @@
-import { RoleType } from '@/common/role-types';
+import { RoleType } from '@/util/role-types';
 
 export class Role {
   id?: number;

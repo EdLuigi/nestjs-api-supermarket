@@ -14,11 +14,11 @@ import {
 } from '@nestjs/common';
 import { CreateSupplierDto } from '../dto/create-supplier.dto';
 import { UpdateSupplierDto } from '../dto/update-supplier.dto';
-import { CreateSupplierUseCase } from '../use-cases/create-supplier.use-case';
-import { FindAllSuppliersUseCase } from '../use-cases/find-all-suppliers.use-case';
-import { FindOneSupplierUseCase } from '../use-cases/find-one-supplier.use-case';
-import { RemoveSupplierUseCase } from '../use-cases/remove-supplier.use-case';
-import { UpdateSupplierUseCase } from '../use-cases/update-supplier.use-case';
+import { CreateSupplierUseCase } from '../use-case/create-supplier.use-case';
+import { FindAllSuppliersUseCase } from '../use-case/find-all-suppliers.use-case';
+import { FindOneSupplierUseCase } from '../use-case/find-one-supplier.use-case';
+import { RemoveSupplierUseCase } from '../use-case/remove-supplier.use-case';
+import { UpdateSupplierUseCase } from '../use-case/update-supplier.use-case';
 
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('suppliers')

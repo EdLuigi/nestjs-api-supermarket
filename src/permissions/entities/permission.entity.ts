@@ -1,4 +1,4 @@
-import { PermissionType } from '@/common/decorator/route-permission.decorator';
+import { PermissionType } from '@/util/permission-types';
 
 export class Permission {
   id?: number;

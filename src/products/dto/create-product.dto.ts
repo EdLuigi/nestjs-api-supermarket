@@ -23,5 +23,5 @@ export class CreateProductDto {
   @IsInt()
   @Min(0)
   @IsOptional()
-  discount: number;
+  discount_percentage: number;
 }

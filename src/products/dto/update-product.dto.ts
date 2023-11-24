@@ -28,5 +28,5 @@ export class UpdateProductDto {
   @IsInt()
   @Min(0)
   @IsOptional()
-  discount: number;
+  discount_percentage: number;
 }

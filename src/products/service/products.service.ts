@@ -12,7 +12,7 @@ export class ProductsService {
       data: {
         name: dto.name,
         description: dto.description,
-        discount: dto.discount,
+        discount_percentage: dto.discount_percentage,
         price: dto.price,
         stock: dto.stock,
         supplierId: dto.supplierId,
@@ -40,7 +40,7 @@ export class ProductsService {
       where: { id },
       data: {
         description: dto.description,
-        discount: dto.discount,
+        discount_percentage: dto.discount_percentage,
         price: dto.price,
         stock: dto.stock,
         updatedAt: new Date(),

@@ -5,7 +5,7 @@ const productMock: UpdateProductDto = {
   description: 'description updated',
   stock: 2,
   price: 2,
-  discount: 2,
+  discount_percentage: 2,
 };
 
 export const updateProductTest = () => {

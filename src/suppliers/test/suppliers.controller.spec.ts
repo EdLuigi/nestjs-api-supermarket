@@ -1,11 +1,11 @@
 import { AppModule } from '@/app.module';
 import { ProductsService } from '@/products/service/products.service';
 import { SuppliersService } from '@/suppliers/service/suppliers.service';
-import { CreateSupplierUseCase } from '@/suppliers/use-cases/create-supplier.use-case';
-import { FindAllSuppliersUseCase } from '@/suppliers/use-cases/find-all-suppliers.use-case';
-import { FindOneSupplierUseCase } from '@/suppliers/use-cases/find-one-supplier.use-case';
-import { RemoveSupplierUseCase } from '@/suppliers/use-cases/remove-supplier.use-case';
-import { UpdateSupplierUseCase } from '@/suppliers/use-cases/update-supplier.use-case';
+import { CreateSupplierUseCase } from '@/suppliers/use-case/create-supplier.use-case';
+import { FindAllSuppliersUseCase } from '@/suppliers/use-case/find-all-suppliers.use-case';
+import { FindOneSupplierUseCase } from '@/suppliers/use-case/find-one-supplier.use-case';
+import { RemoveSupplierUseCase } from '@/suppliers/use-case/remove-supplier.use-case';
+import { UpdateSupplierUseCase } from '@/suppliers/use-case/update-supplier.use-case';
 import { Test, TestingModule } from '@nestjs/testing';
 import { SuppliersController } from '../controller/suppliers.controller';
 import { createSupplierTest } from './create.test';
