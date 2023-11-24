@@ -1,7 +1,8 @@
-import { IsNumber, NotEquals, ValidateIf } from 'class-validator';
+import { IsNumber, Min, NotEquals, ValidateIf } from 'class-validator';
 
 export class UpdateUsersRoleDto {
   @IsNumber()
+  @Min(0)
   @NotEquals(null)
   @ValidateIf((object, value) => value !== undefined)
   roleId: number;
