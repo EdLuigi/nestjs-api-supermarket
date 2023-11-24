@@ -2,13 +2,13 @@ import { GetUser } from '@/common/decorator/get-user.decorator';
 import { RoutePermission } from '@/common/decorator/route-permission.decorator';
 import { JwtGuard } from '@/common/guard/jwt.guard';
 import { UserHasPermissionGuard } from '@/common/guard/route-permission.guard';
+import { IdFormatValidationPipe } from '@/common/pipe/id-format-validation.pipe';
 import {
   Body,
   Controller,
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   UseGuards,
 } from '@nestjs/common';
@@ -44,7 +44,7 @@ export class UsersController {
 
   @Get(':id')
   @RoutePermission('find-user')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', IdFormatValidationPipe) id: number) {
     return this.findUserUseCase.execute(id);
   }
 
@@ -60,7 +60,7 @@ export class UsersController {
   @Patch(':id')
   @RoutePermission('update-user')
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', IdFormatValidationPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,
   ) {
     return this.updateUserUseCase.execute(id, updateUserDto);
@@ -68,7 +68,7 @@ export class UsersController {
 
   @Delete(':id')
   @RoutePermission('delete-user')
-  remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id', IdFormatValidationPipe) id: number) {
     return this.removeUserUseCase.execute(id);
   }
 }

@@ -1,13 +1,13 @@
 import { RoutePermission } from '@/common/decorator/route-permission.decorator';
 import { JwtGuard } from '@/common/guard/jwt.guard';
 import { UserHasPermissionGuard } from '@/common/guard/route-permission.guard';
+import { IdFormatValidationPipe } from '@/common/pipe/id-format-validation.pipe';
 import {
   Body,
   Controller,
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   UseGuards,
@@ -45,14 +45,14 @@ export class PermissionsController {
 
   @Get(':id')
   @RoutePermission('find-permission')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', IdFormatValidationPipe) id: number) {
     return this.findOnePermissionUseCase.execute(id);
   }
 
   @Patch(':id')
   @RoutePermission('update-permission')
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', IdFormatValidationPipe) id: number,
     @Body() updatePermissionDto: UpdatePermissionDto,
   ) {
     return this.updatePermissionUseCase.execute(id, updatePermissionDto);
@@ -60,7 +60,7 @@ export class PermissionsController {
 
   @Delete(':id')
   @RoutePermission('delete-permission')
-  remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id', IdFormatValidationPipe) id: number) {
     return this.removePermissionUseCase.execute(id);
   }
 }

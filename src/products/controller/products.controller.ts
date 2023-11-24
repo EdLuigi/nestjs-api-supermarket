@@ -1,13 +1,13 @@
 import { RoutePermission } from '@/common/decorator/route-permission.decorator';
 import { JwtGuard } from '@/common/guard/jwt.guard';
 import { UserHasPermissionGuard } from '@/common/guard/route-permission.guard';
+import { IdFormatValidationPipe } from '@/common/pipe/id-format-validation.pipe';
 import {
   Body,
   Controller,
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   UseGuards,
@@ -47,20 +47,20 @@ export class ProductsController {
 
   @RoutePermission('find-product')
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', IdFormatValidationPipe) id: number) {
     return this.findOneProductUseCase.execute(id);
   }
 
   @RoutePermission('find-products-by-supplier')
   @Get('/supplier/:id')
-  findBySupplier(@Param('id', ParseIntPipe) supplierId: number) {
+  findBySupplier(@Param('id', IdFormatValidationPipe) supplierId: number) {
     return this.findBySupplierUseCase.execute(supplierId);
   }
 
   @RoutePermission('update-product')
   @Patch(':id')
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', IdFormatValidationPipe) id: number,
     @Body() updateProductDto: UpdateProductDto,
   ) {
     return this.updateProductUseCase.execute(id, updateProductDto);
@@ -68,7 +68,7 @@ export class ProductsController {
 
   @RoutePermission('delete-product')
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id', IdFormatValidationPipe) id: number) {
     return this.removeProductUseCase.execute(id);
   }
 }

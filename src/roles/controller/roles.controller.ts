@@ -1,13 +1,13 @@
 import { RoutePermission } from '@/common/decorator/route-permission.decorator';
 import { JwtGuard } from '@/common/guard/jwt.guard';
 import { UserHasPermissionGuard } from '@/common/guard/route-permission.guard';
+import { IdFormatValidationPipe } from '@/common/pipe/id-format-validation.pipe';
 import {
   Body,
   Controller,
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   UseGuards,
@@ -45,14 +45,14 @@ export class RolesController {
 
   @Get(':id')
   @RoutePermission('find-role')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', IdFormatValidationPipe) id: number) {
     return this.findOneRoleUseCase.execute(id);
   }
 
   @Patch(':id')
   @RoutePermission('update-role')
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', IdFormatValidationPipe) id: number,
     @Body() updateRoleDto: UpdateRoleDto,
   ) {
     return this.updateRoleUseCase.execute(id, updateRoleDto);
@@ -60,7 +60,7 @@ export class RolesController {
 
   @Delete(':id')
   @RoutePermission('delete-role')
-  remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id', IdFormatValidationPipe) id: number) {
     return this.removeRoleUseCase.execute(id);
   }
 }
