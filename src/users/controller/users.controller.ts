@@ -12,6 +12,7 @@ import {
   Patch,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { FindAllUsersUseCase } from '../use-case/find-all-users.use-case';
 import { FindMeUseCase } from '../use-case/find-me.use-case';
@@ -19,6 +20,8 @@ import { FindUserUseCase } from '../use-case/find-user.use-case';
 import { RemoveUserUseCase } from '../use-case/remove-user.use-case';
 import { UpdateUserUseCase } from '../use-case/update-user.use-case';
 
+@ApiTags('Users')
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('users')
 export class UsersController {

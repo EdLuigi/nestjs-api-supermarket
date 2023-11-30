@@ -12,6 +12,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreatePermissionDto } from '../dto/create-permission.dto';
 import { UpdatePermissionDto } from '../dto/update-permission.dto';
 import { CreatePermissionUseCase } from '../use-case/create-permission.use-case';
@@ -20,6 +21,8 @@ import { FindOnePermissionUseCase } from '../use-case/find-one-permission.use-ca
 import { RemovePermissionUseCase } from '../use-case/remove-permission.use-case';
 import { UpdatePermissionUseCase } from '../use-case/update-permission.use-case';
 
+@ApiTags('Permissions')
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('permissions')
 export class PermissionsController {

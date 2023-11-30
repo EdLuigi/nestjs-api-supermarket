@@ -3,12 +3,15 @@ import { JwtGuard } from '@/common/guard/jwt.guard';
 import { UserHasPermissionGuard } from '@/common/guard/route-permission.guard';
 import { IdFormatValidationPipe } from '@/common/pipe/id-format-validation.pipe';
 import { Body, Controller, Get, Param, Patch, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UpdateUsersRoleDto } from '../dto/update-users_role.dto';
 import { FindAllUsersRolesUseCase } from '../use-case/find-all-users-roles.use-case';
 import { FindByUserIdUseCase } from '../use-case/find-by-user.use-case';
 import { FindUserRoleUseCase } from '../use-case/find-user-role.use-case';
 import { UpdateUserRoleUseCase } from '../use-case/update-user-role.use-case';
 
+@ApiTags('User-Roles')
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('users-roles')
 export class UsersRolesController {

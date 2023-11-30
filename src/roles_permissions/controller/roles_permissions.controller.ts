@@ -11,12 +11,15 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateRolePermissionDto } from '../dto/create-role_permission.dto';
 import { CreateRolePermissionUseCase } from '../use-case/create-role-permission.use-case';
 import { FindAllRolesPermissionsUseCase } from '../use-case/find-all-roles-permissions.use-case';
 import { FindOneRolePermissionUseCase } from '../use-case/find-role-permission.use-case';
 import { RemoveRolePermissionUseCase } from '../use-case/remove-role-permission.use-case';
 
+@ApiTags('Role-Permissions')
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('roles-permissions')
 export class RolesPermissionsController {

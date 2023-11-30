@@ -12,6 +12,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateRoleDto } from '../dto/create-role.dto';
 import { UpdateRoleDto } from '../dto/update-role.dto';
 import { CreateRoleUseCase } from '../use-case/create-role.use-case';
@@ -20,6 +21,8 @@ import { FindOneRoleUseCase } from '../use-case/find-role.use-case';
 import { RemoveRoleUseCase } from '../use-case/remove-role.use-case';
 import { UpdateRoleUseCase } from '../use-case/update-role.use-case';
 
+@ApiTags('Roles')
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('roles')
 export class RolesController {

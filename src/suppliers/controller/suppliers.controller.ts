@@ -12,6 +12,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateSupplierDto } from '../dto/create-supplier.dto';
 import { UpdateSupplierDto } from '../dto/update-supplier.dto';
 import { CreateSupplierUseCase } from '../use-case/create-supplier.use-case';
@@ -20,6 +21,8 @@ import { FindOneSupplierUseCase } from '../use-case/find-one-supplier.use-case';
 import { RemoveSupplierUseCase } from '../use-case/remove-supplier.use-case';
 import { UpdateSupplierUseCase } from '../use-case/update-supplier.use-case';
 
+@ApiTags('Suppliers')
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('suppliers')
 export class SuppliersController {

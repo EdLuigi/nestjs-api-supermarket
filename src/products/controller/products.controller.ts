@@ -12,6 +12,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 import { CreateProductUseCase } from '../use-case/create-product.use-case';
@@ -21,6 +22,8 @@ import { FindOneProductUseCase } from '../use-case/find-one-product.use-case';
 import { RemoveProductUseCase } from '../use-case/remove-product.use-case';
 import { UpdateProductUseCase } from '../use-case/update-product.use-case';
 
+@ApiTags('Products')
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtGuard, UserHasPermissionGuard)
 @Controller('products')
 export class ProductsController {
