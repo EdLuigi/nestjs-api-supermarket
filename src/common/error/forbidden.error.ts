@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-export class UnauthorizedError extends HttpException {
+export class ForbiddenError extends HttpException {
   constructor() {
     super(
-      `User must be logged in to access this feature`,
+      `User does not have the required permissions`,
       HttpStatus.UNAUTHORIZED,
     );
   }

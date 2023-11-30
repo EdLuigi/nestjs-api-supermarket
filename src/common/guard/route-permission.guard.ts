@@ -3,6 +3,7 @@ import { User } from '@/users/entities/user.entity';
 import { UsersService } from '@/users/service/users.service';
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { ForbiddenError } from '../error/forbidden.error';
 import { UnauthorizedError } from '../error/unauthorized.error';
 
 @Injectable()
@@ -33,7 +34,7 @@ export class UserHasPermissionGuard implements CanActivate {
     for (let element of requiredPermissions) {
       if (!!element) {
         if (userPermissions.includes(element)) continue;
-        throw new UnauthorizedError();
+        throw new ForbiddenError();
       }
     }
 
