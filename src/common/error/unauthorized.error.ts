@@ -1,10 +1,8 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { UnauthorizedErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class UnauthorizedError extends HttpException {
   constructor() {
-    super(
-      `User must be logged in to access this feature`,
-      HttpStatus.UNAUTHORIZED,
-    );
+    super(UnauthorizedErrorObj.message, UnauthorizedErrorObj.statusCode);
   }
 }

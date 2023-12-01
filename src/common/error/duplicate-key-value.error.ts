@@ -1,10 +1,11 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { DuplicateKeyValueErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class DuplicateKeyValueError extends HttpException {
   constructor(credential: string) {
     super(
-      `Key value '${credential}' was already created`,
-      HttpStatus.BAD_REQUEST,
+      DuplicateKeyValueErrorObj.message + credential,
+      DuplicateKeyValueErrorObj.statusCode,
     );
   }
 }

@@ -1,10 +1,8 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { ForbiddenErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class ForbiddenError extends HttpException {
   constructor() {
-    super(
-      `User does not have the required permissions`,
-      HttpStatus.UNAUTHORIZED,
-    );
+    super(ForbiddenErrorObj.message, ForbiddenErrorObj.statusCode);
   }
 }

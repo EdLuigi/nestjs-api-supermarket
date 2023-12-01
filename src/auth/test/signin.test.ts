@@ -1,6 +1,5 @@
-import { CredentialsTakenError } from '@/common/error/credentials-taken.error';
-import { SigninDto } from '../dto/signin.dto';
 import { IncorrectCredentialsError } from '@/common/error/incorrect-credentials.error';
+import { SigninDto } from '../dto/signin.dto';
 
 const authMock: SigninDto = {
   registry: 'user2',

@@ -1,7 +1,8 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { NotFoundRoleErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class NotFoundRoleError extends HttpException {
   constructor() {
-    super('Role does not exist', HttpStatus.NOT_FOUND);
+    super(NotFoundRoleErrorObj.message, NotFoundRoleErrorObj.statusCode);
   }
 }

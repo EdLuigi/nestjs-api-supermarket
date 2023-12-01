@@ -1,7 +1,11 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { CredentialsTakenErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class CredentialsTakenError extends HttpException {
   constructor() {
-    super(`Credentials already taken`, HttpStatus.BAD_REQUEST);
+    super(
+      CredentialsTakenErrorObj.message,
+      CredentialsTakenErrorObj.statusCode,
+    );
   }
 }

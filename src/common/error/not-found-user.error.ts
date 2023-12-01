@@ -1,7 +1,8 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { NotFoundUserErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class NotFoundUserError extends HttpException {
   constructor() {
-    super('User does not exist', HttpStatus.NOT_FOUND);
+    super(NotFoundUserErrorObj.message, NotFoundUserErrorObj.statusCode);
   }
 }

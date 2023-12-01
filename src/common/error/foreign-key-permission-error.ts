@@ -1,10 +1,11 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { ForeignKeyPermissionErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class ForeignKeyPermissionError extends HttpException {
   constructor() {
     super(
-      'Permission has foreign keys and cannot be removed',
-      HttpStatus.BAD_REQUEST,
+      ForeignKeyPermissionErrorObj.message,
+      ForeignKeyPermissionErrorObj.statusCode,
     );
   }
 }

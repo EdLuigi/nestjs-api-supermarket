@@ -28,7 +28,7 @@ const validateBusinessRules = async () => {
   }
 
   try {
-    const id = '1';
+    const id = '2';
     const userRoleMock_WRONG: UpdateUsersRoleDto = { roleId: 0 };
 
     await global.__CONTROLLER__.update(+id, userRoleMock_WRONG);

@@ -1,10 +1,8 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { ForeignKeyRoleErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class ForeignKeyRoleError extends HttpException {
   constructor() {
-    super(
-      'Role has foreign keys and cannot be removed',
-      HttpStatus.BAD_REQUEST,
-    );
+    super(ForeignKeyRoleErrorObj.message, ForeignKeyRoleErrorObj.statusCode);
   }
 }

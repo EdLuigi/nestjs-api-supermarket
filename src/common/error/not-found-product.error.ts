@@ -1,7 +1,8 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { NotFoundProductErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class NotFoundProductError extends HttpException {
   constructor() {
-    super('Product does not exist', HttpStatus.NOT_FOUND);
+    super(NotFoundProductErrorObj.message, NotFoundProductErrorObj.statusCode);
   }
 }

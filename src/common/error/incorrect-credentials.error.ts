@@ -1,7 +1,11 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { IncorrectCredentialsErrorObj } from '@/util/api-error-responses';
+import { HttpException } from '@nestjs/common';
 
 export class IncorrectCredentialsError extends HttpException {
   constructor() {
-    super('Credentials incorrect', HttpStatus.BAD_REQUEST);
+    super(
+      IncorrectCredentialsErrorObj.message,
+      IncorrectCredentialsErrorObj.statusCode,
+    );
   }
 }
