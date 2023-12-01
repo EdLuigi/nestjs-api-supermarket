@@ -25,7 +25,7 @@ async function bootstrap() {
       },
       'JWT-auth',
     )
-    .addTag('Users')
+    .addTag('Users', 'User related operations, login and permissions required')
     .addTag('Roles')
     .addTag('Permissions')
     .addTag('User-Roles')
