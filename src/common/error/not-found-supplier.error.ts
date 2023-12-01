@@ -4,8 +4,8 @@ import { HttpException } from '@nestjs/common';
 export class NotFoundSupplierError extends HttpException {
   constructor() {
     super(
-      NotFoundSupplierErrorObj.message,
-      NotFoundSupplierErrorObj.statusCode,
+      NotFoundSupplierErrorObj.description,
+      NotFoundSupplierErrorObj.status,
     );
   }
 }

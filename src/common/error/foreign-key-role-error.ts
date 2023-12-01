@@ -3,6 +3,6 @@ import { HttpException } from '@nestjs/common';
 
 export class ForeignKeyRoleError extends HttpException {
   constructor() {
-    super(ForeignKeyRoleErrorObj.message, ForeignKeyRoleErrorObj.statusCode);
+    super(ForeignKeyRoleErrorObj.description, ForeignKeyRoleErrorObj.status);
   }
 }

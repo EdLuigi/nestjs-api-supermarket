@@ -4,8 +4,8 @@ import { HttpException } from '@nestjs/common';
 export class ForeignKeyPermissionError extends HttpException {
   constructor() {
     super(
-      ForeignKeyPermissionErrorObj.message,
-      ForeignKeyPermissionErrorObj.statusCode,
+      ForeignKeyPermissionErrorObj.description,
+      ForeignKeyPermissionErrorObj.status,
     );
   }
 }

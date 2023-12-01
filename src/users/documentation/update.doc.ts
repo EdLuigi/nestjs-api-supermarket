@@ -38,25 +38,10 @@ export function UpdateDoc() {
         },
       },
     }),
-    ApiResponse({
-      description: BadFormatIdErrorObj.message,
-      status: BadFormatIdErrorObj.statusCode,
-    }),
-    ApiResponse({
-      description: UnauthorizedErrorObj.message,
-      status: UnauthorizedErrorObj.statusCode,
-    }),
-    ApiResponse({
-      description: ForbiddenErrorObj.message,
-      status: ForbiddenErrorObj.statusCode,
-    }),
-    ApiResponse({
-      description: NotFoundUserErrorObj.message,
-      status: NotFoundUserErrorObj.statusCode,
-    }),
-    ApiResponse({
-      description: InternalServerErrorObj.message,
-      status: InternalServerErrorObj.statusCode,
-    }),
+    ApiResponse(BadFormatIdErrorObj),
+    ApiResponse(UnauthorizedErrorObj),
+    ApiResponse(ForbiddenErrorObj),
+    ApiResponse(NotFoundUserErrorObj),
+    ApiResponse(InternalServerErrorObj),
   );
 }

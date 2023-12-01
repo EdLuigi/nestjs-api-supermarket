@@ -25,17 +25,8 @@ export function UpdateMeDoc() {
         },
       },
     }),
-    ApiResponse({
-      description: BadFormatIdErrorObj.message,
-      status: BadFormatIdErrorObj.statusCode,
-    }),
-    ApiResponse({
-      description: ForbiddenErrorObj.message,
-      status: ForbiddenErrorObj.statusCode,
-    }),
-    ApiResponse({
-      description: InternalServerErrorObj.message,
-      status: InternalServerErrorObj.statusCode,
-    }),
+    ApiResponse(BadFormatIdErrorObj),
+    ApiResponse(ForbiddenErrorObj),
+    ApiResponse(InternalServerErrorObj),
   );
 }

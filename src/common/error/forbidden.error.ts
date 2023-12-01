@@ -3,6 +3,6 @@ import { HttpException } from '@nestjs/common';
 
 export class ForbiddenError extends HttpException {
   constructor() {
-    super(ForbiddenErrorObj.message, ForbiddenErrorObj.statusCode);
+    super(ForbiddenErrorObj.description, ForbiddenErrorObj.status);
   }
 }

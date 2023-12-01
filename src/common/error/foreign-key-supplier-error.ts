@@ -4,8 +4,8 @@ import { HttpException } from '@nestjs/common';
 export class ForeignKeySupplierError extends HttpException {
   constructor() {
     super(
-      ForeignKeySupplierErrorObj.message,
-      ForeignKeySupplierErrorObj.statusCode,
+      ForeignKeySupplierErrorObj.description,
+      ForeignKeySupplierErrorObj.status,
     );
   }
 }

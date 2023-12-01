@@ -4,8 +4,8 @@ import { HttpException } from '@nestjs/common';
 export class NotFoundUserRoleError extends HttpException {
   constructor() {
     super(
-      NotFoundUserRoleErrorObj.message,
-      NotFoundUserRoleErrorObj.statusCode,
+      NotFoundUserRoleErrorObj.description,
+      NotFoundUserRoleErrorObj.status,
     );
   }
 }

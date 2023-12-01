@@ -3,6 +3,6 @@ import { HttpException } from '@nestjs/common';
 
 export class NotFoundUserError extends HttpException {
   constructor() {
-    super(NotFoundUserErrorObj.message, NotFoundUserErrorObj.statusCode);
+    super(NotFoundUserErrorObj.description, NotFoundUserErrorObj.status);
   }
 }

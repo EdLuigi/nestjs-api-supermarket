@@ -4,8 +4,8 @@ import { HttpException } from '@nestjs/common';
 export class NotFoundPermissionError extends HttpException {
   constructor() {
     super(
-      NotFoundPermissionErrorObj.message,
-      NotFoundPermissionErrorObj.statusCode,
+      NotFoundPermissionErrorObj.description,
+      NotFoundPermissionErrorObj.status,
     );
   }
 }

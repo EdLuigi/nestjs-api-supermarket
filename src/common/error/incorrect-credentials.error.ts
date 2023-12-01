@@ -4,8 +4,8 @@ import { HttpException } from '@nestjs/common';
 export class IncorrectCredentialsError extends HttpException {
   constructor() {
     super(
-      IncorrectCredentialsErrorObj.message,
-      IncorrectCredentialsErrorObj.statusCode,
+      IncorrectCredentialsErrorObj.description,
+      IncorrectCredentialsErrorObj.status,
     );
   }
 }

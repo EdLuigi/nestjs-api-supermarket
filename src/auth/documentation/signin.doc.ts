@@ -14,19 +14,12 @@ export function SigninDoc() {
       description: 'CREATED response',
       schema: {
         example: {
-          access_token:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInJlZ2lzdHJ5IjoidXNlcjFhIiwiaWF0IjoxNzAxNDU1NDA4LCJleHAiOjE3MDE0NTYzMDh9.9xsuK7wibEeFXkU-vLsVIGkogBLlaRddEcWKus0B1u4',
+          access_token: 'string',
         },
       },
       status: HttpStatus.CREATED,
     }),
-    ApiResponse({
-      description: IncorrectCredentialsErrorObj.message,
-      status: IncorrectCredentialsErrorObj.statusCode,
-    }),
-    ApiResponse({
-      description: InternalServerErrorObj.message,
-      status: InternalServerErrorObj.statusCode,
-    }),
+    ApiResponse(IncorrectCredentialsErrorObj),
+    ApiResponse(InternalServerErrorObj),
   );
 }

@@ -4,8 +4,8 @@ import { HttpException } from '@nestjs/common';
 export class CredentialsTakenError extends HttpException {
   constructor() {
     super(
-      CredentialsTakenErrorObj.message,
-      CredentialsTakenErrorObj.statusCode,
+      CredentialsTakenErrorObj.description,
+      CredentialsTakenErrorObj.status,
     );
   }
 }

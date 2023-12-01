@@ -51,17 +51,8 @@ export function FindAllDoc() {
         ],
       },
     }),
-    ApiResponse({
-      description: UnauthorizedErrorObj.message,
-      status: UnauthorizedErrorObj.statusCode,
-    }),
-    ApiResponse({
-      description: ForbiddenErrorObj.message,
-      status: ForbiddenErrorObj.statusCode,
-    }),
-    ApiResponse({
-      description: InternalServerErrorObj.message,
-      status: InternalServerErrorObj.statusCode,
-    }),
+    ApiResponse(UnauthorizedErrorObj),
+    ApiResponse(ForbiddenErrorObj),
+    ApiResponse(InternalServerErrorObj),
   );
 }
