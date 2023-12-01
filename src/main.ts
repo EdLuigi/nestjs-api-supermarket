@@ -10,10 +10,6 @@ async function bootstrap() {
     .setTitle('Nestjs Supermarket Documentation')
     .setDescription('The "nestjs supermarket API" project description.')
     .setVersion('1.0')
-    .addTag(
-      'Auth',
-      'Authentication related operations, no permissions required',
-    )
     .addBearerAuth(
       {
         type: 'http',
@@ -25,13 +21,32 @@ async function bootstrap() {
       },
       'JWT-auth',
     )
-    .addTag('Users', 'User related operations, login and permissions required')
-    .addTag('Roles')
-    .addTag('Permissions')
-    .addTag('User-Roles')
-    .addTag('Role-Permissions')
-    .addTag('Suppliers')
-    .addTag('Products')
+    .addTag(
+      'Auth',
+      'Authentication related operations, no permissions required',
+    )
+    .addTag('Users', 'Users related operations, login and permissions required')
+    .addTag('Roles', 'Roles related operations, login and permissions required')
+    .addTag(
+      'Permissions',
+      'Permissions related operations, login and permissions required',
+    )
+    .addTag(
+      'User-Roles',
+      'User-Roles foreign keys related operations, login and permissions required',
+    )
+    .addTag(
+      'Role-Permissions',
+      'Role-Permissions foreign keys related operations, login and permissions required',
+    )
+    .addTag(
+      'Suppliers',
+      'Suppliers related operations, login and permissions required',
+    )
+    .addTag(
+      'Products',
+      'Products related operations, login and permissions required',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
