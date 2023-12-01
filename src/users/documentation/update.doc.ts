@@ -1,6 +1,7 @@
 import {
   BadFormatIdErrorObj,
   ForbiddenErrorObj,
+  InternalServerErrorObj,
   NotFoundUserErrorObj,
   UnauthorizedErrorObj,
 } from '@/util/api-error-responses';
@@ -52,6 +53,10 @@ export function UpdateDoc() {
     ApiResponse({
       description: NotFoundUserErrorObj.message,
       status: NotFoundUserErrorObj.statusCode,
+    }),
+    ApiResponse({
+      description: InternalServerErrorObj.message,
+      status: InternalServerErrorObj.statusCode,
     }),
   );
 }

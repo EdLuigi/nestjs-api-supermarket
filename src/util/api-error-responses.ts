@@ -79,3 +79,8 @@ export const UnauthorizedErrorObj = {
   message: `User must be logged in to access this feature`,
   statusCode: HttpStatus.UNAUTHORIZED,
 };
+
+export const InternalServerErrorObj = {
+  message: 'Internal server error',
+  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+};

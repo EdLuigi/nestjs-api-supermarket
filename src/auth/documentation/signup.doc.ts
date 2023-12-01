@@ -1,4 +1,7 @@
-import { CredentialsTakenErrorObj } from '@/util/api-error-responses';
+import {
+  CredentialsTakenErrorObj,
+  InternalServerErrorObj,
+} from '@/util/api-error-responses';
 import { HttpStatus, applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
@@ -20,6 +23,10 @@ export function SignupDoc() {
     ApiResponse({
       description: CredentialsTakenErrorObj.message,
       status: CredentialsTakenErrorObj.statusCode,
+    }),
+    ApiResponse({
+      description: InternalServerErrorObj.message,
+      status: InternalServerErrorObj.statusCode,
     }),
   );
 }

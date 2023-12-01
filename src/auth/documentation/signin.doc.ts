@@ -1,4 +1,7 @@
-import { IncorrectCredentialsErrorObj } from '@/util/api-error-responses';
+import {
+  IncorrectCredentialsErrorObj,
+  InternalServerErrorObj,
+} from '@/util/api-error-responses';
 import { HttpStatus, applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
@@ -20,6 +23,10 @@ export function SigninDoc() {
     ApiResponse({
       description: IncorrectCredentialsErrorObj.message,
       status: IncorrectCredentialsErrorObj.statusCode,
+    }),
+    ApiResponse({
+      description: InternalServerErrorObj.message,
+      status: InternalServerErrorObj.statusCode,
     }),
   );
 }

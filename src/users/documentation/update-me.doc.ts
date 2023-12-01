@@ -1,6 +1,7 @@
 import {
   BadFormatIdErrorObj,
   ForbiddenErrorObj,
+  InternalServerErrorObj,
 } from '@/util/api-error-responses';
 import { applyDecorators } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -31,6 +32,10 @@ export function UpdateMeDoc() {
     ApiResponse({
       description: ForbiddenErrorObj.message,
       status: ForbiddenErrorObj.statusCode,
+    }),
+    ApiResponse({
+      description: InternalServerErrorObj.message,
+      status: InternalServerErrorObj.statusCode,
     }),
   );
 }

@@ -1,6 +1,7 @@
 import {
   BadFormatIdErrorObj,
   ForbiddenErrorObj,
+  InternalServerErrorObj,
   UnauthorizedErrorObj,
 } from '@/util/api-error-responses';
 import { applyDecorators } from '@nestjs/common';
@@ -47,6 +48,10 @@ export function FindOneDoc() {
     ApiResponse({
       description: ForbiddenErrorObj.message,
       status: ForbiddenErrorObj.statusCode,
+    }),
+    ApiResponse({
+      description: InternalServerErrorObj.message,
+      status: InternalServerErrorObj.statusCode,
     }),
   );
 }
