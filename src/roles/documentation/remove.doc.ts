@@ -1,8 +1,9 @@
 import {
   BadFormatIdErrorObj,
   ForbiddenErrorObj,
+  ForeignKeyRoleErrorObj,
   InternalServerErrorObj,
-  NotFoundUserErrorObj,
+  NotFoundRoleErrorObj,
   UnauthorizedErrorObj,
 } from '@/util/api-error-responses';
 import { applyDecorators } from '@nestjs/common';
@@ -17,12 +18,12 @@ export function RemoveDoc() {
   return applyDecorators(
     ApiOperation({
       description:
-        'Delete user by user id. Permission required: ["delete-user"]',
+        'Delete role by role id. Permission required: ["delete-role"]',
     }),
     ApiParam({
       name: 'id',
       type: 'number',
-      description: 'User id to be deleted',
+      description: 'Role id to be deleted',
       allowEmptyValue: false,
     }),
     ApiOkResponse({
@@ -31,7 +32,8 @@ export function RemoveDoc() {
     ApiResponse(BadFormatIdErrorObj),
     ApiResponse(UnauthorizedErrorObj),
     ApiResponse(ForbiddenErrorObj),
-    ApiResponse(NotFoundUserErrorObj),
+    ApiResponse(ForeignKeyRoleErrorObj),
+    ApiResponse(NotFoundRoleErrorObj),
     ApiResponse(InternalServerErrorObj),
   );
 }

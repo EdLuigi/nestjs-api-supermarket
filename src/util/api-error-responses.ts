@@ -1,17 +1,17 @@
 import { HttpStatus } from '@nestjs/common';
 
 export const BadFormatIdErrorObj = {
-  description: `Variable id is in a bad format`,
+  description: 'Variable id is in a bad format',
   status: HttpStatus.BAD_REQUEST,
 };
 
 export const CredentialsTakenErrorObj = {
-  description: `Credentials already taken`,
+  description: 'Credentials already taken',
   status: HttpStatus.BAD_REQUEST,
 };
 
 export const DuplicateKeyValueErrorObj = {
-  description: `Key value is duplicated: `,
+  description: 'Key value is duplicated',
   status: HttpStatus.BAD_REQUEST,
 };
 
@@ -26,7 +26,8 @@ export const ForeignKeyPermissionErrorObj = {
 };
 
 export const ForeignKeyRoleErrorObj = {
-  description: 'Role has foreign keys and cannot be removed',
+  description:
+    'Role has user-role/role-permission foreign keys and cannot be removed',
   status: HttpStatus.BAD_REQUEST,
 };
 
@@ -76,7 +77,7 @@ export const NotFoundUserErrorObj = {
 };
 
 export const UnauthorizedErrorObj = {
-  description: `User must be logged in to access this feature`,
+  description: 'User must be logged in to access this feature',
   status: HttpStatus.UNAUTHORIZED,
 };
 

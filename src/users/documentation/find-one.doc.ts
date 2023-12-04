@@ -16,12 +16,12 @@ export function FindOneDoc() {
   return applyDecorators(
     ApiOperation({
       description:
-        'Show user information by user id. Permission required: ["find-one"]',
+        'Show user information by user id. Permission required: ["find-user"]',
     }),
     ApiParam({
       name: 'id',
       type: 'number',
-      description: 'User id to be searched.',
+      description: 'User id to be searched',
       allowEmptyValue: false,
     }),
     ApiOkResponse({

@@ -13,6 +13,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { CreateDoc } from '../documentation/create.doc';
+import { FindAllDoc } from '../documentation/find-all.doc';
+import { FindOneDoc } from '../documentation/find-one.doc';
+import { RemoveDoc } from '../documentation/remove.doc';
+import { UpdateDoc } from '../documentation/update.doc';
 import { CreateRoleDto } from '../dto/create-role.dto';
 import { UpdateRoleDto } from '../dto/update-role.dto';
 import { CreateRoleUseCase } from '../use-case/create-role.use-case';
@@ -36,24 +41,28 @@ export class RolesController {
 
   @Post()
   @RoutePermission('create-role')
+  @CreateDoc()
   create(@Body() createRoleDto: CreateRoleDto) {
     return this.createRoleUseCase.execute(createRoleDto);
   }
 
   @Get()
   @RoutePermission('find-all-roles')
+  @FindAllDoc()
   findAll() {
     return this.findAllRolesUseCase.execute();
   }
 
   @Get(':id')
   @RoutePermission('find-role')
+  @FindOneDoc()
   findOne(@Param('id', IdFormatValidationPipe) id: number) {
     return this.findOneRoleUseCase.execute(id);
   }
 
   @Patch(':id')
   @RoutePermission('update-role')
+  @UpdateDoc()
   update(
     @Param('id', IdFormatValidationPipe) id: number,
     @Body() updateRoleDto: UpdateRoleDto,
@@ -63,6 +72,7 @@ export class RolesController {
 
   @Delete(':id')
   @RoutePermission('delete-role')
+  @RemoveDoc()
   remove(@Param('id', IdFormatValidationPipe) id: number) {
     return this.removeRoleUseCase.execute(id);
   }

@@ -22,7 +22,7 @@ export function UpdateDoc() {
     ApiParam({
       name: 'id',
       type: 'number',
-      description: 'User id to be updated.',
+      description: 'User id to be updated',
       allowEmptyValue: false,
     }),
     ApiOkResponse({

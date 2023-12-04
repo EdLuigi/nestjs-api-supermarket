@@ -2,7 +2,7 @@ import {
   BadFormatIdErrorObj,
   ForbiddenErrorObj,
   InternalServerErrorObj,
-  NotFoundUserErrorObj,
+  NotFoundRoleErrorObj,
   UnauthorizedErrorObj,
 } from '@/util/api-error-responses';
 import { applyDecorators } from '@nestjs/common';
@@ -13,25 +13,34 @@ import {
   ApiResponse,
 } from '@nestjs/swagger';
 
-export function RemoveDoc() {
+export function UpdateDoc() {
   return applyDecorators(
     ApiOperation({
       description:
-        'Delete user by user id. Permission required: ["delete-user"]',
+        'Update role information by role id. Permission required: ["update-role"]',
     }),
     ApiParam({
       name: 'id',
       type: 'number',
-      description: 'User id to be deleted',
+      description: 'Role id to be updated',
       allowEmptyValue: false,
     }),
     ApiOkResponse({
       description: 'OK response',
+      schema: {
+        example: {
+          id: 3,
+          name: 'Employee',
+          description: 'description updated',
+          createdAt: '2023-12-01T13:22:46.990Z',
+          updatedAt: '2023-12-04T14:47:17.081Z',
+        },
+      },
     }),
     ApiResponse(BadFormatIdErrorObj),
     ApiResponse(UnauthorizedErrorObj),
     ApiResponse(ForbiddenErrorObj),
-    ApiResponse(NotFoundUserErrorObj),
+    ApiResponse(NotFoundRoleErrorObj),
     ApiResponse(InternalServerErrorObj),
   );
 }

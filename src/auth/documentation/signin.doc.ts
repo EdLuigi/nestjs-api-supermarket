@@ -11,7 +11,7 @@ export function SigninDoc() {
       description: 'Signin to the application',
     }),
     ApiResponse({
-      description: 'CREATED response',
+      description: 'Created response',
       schema: {
         example: {
           access_token: 'string',

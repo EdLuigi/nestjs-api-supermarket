@@ -11,7 +11,7 @@ export function SignupDoc() {
       description: 'Register a new user',
     }),
     ApiResponse({
-      description: 'CREATED response',
+      description: 'Created response',
       schema: {
         example: {
           access_token: 'string',
