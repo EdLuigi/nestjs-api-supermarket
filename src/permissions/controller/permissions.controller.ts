@@ -13,6 +13,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { CreateDoc } from '../documentation/create.doc';
+import { FindAllDoc } from '../documentation/find-all.doc';
+import { FindOneDoc } from '../documentation/find-one.doc';
+import { RemoveDoc } from '../documentation/remove.doc';
+import { UpdateDoc } from '../documentation/update.doc';
 import { CreatePermissionDto } from '../dto/create-permission.dto';
 import { UpdatePermissionDto } from '../dto/update-permission.dto';
 import { CreatePermissionUseCase } from '../use-case/create-permission.use-case';
@@ -36,24 +41,28 @@ export class PermissionsController {
 
   @Post()
   @RoutePermission('create-permission')
+  @CreateDoc()
   create(@Body() createPermissionDto: CreatePermissionDto) {
     return this.createPermissionUseCase.execute(createPermissionDto);
   }
 
   @Get()
   @RoutePermission('find-all-permissions')
+  @FindAllDoc()
   findAll() {
     return this.findAllPermissionsUseCase.execute();
   }
 
   @Get(':id')
   @RoutePermission('find-permission')
+  @FindOneDoc()
   findOne(@Param('id', IdFormatValidationPipe) id: number) {
     return this.findOnePermissionUseCase.execute(id);
   }
 
   @Patch(':id')
   @RoutePermission('update-permission')
+  @UpdateDoc()
   update(
     @Param('id', IdFormatValidationPipe) id: number,
     @Body() updatePermissionDto: UpdatePermissionDto,
@@ -63,6 +72,7 @@ export class PermissionsController {
 
   @Delete(':id')
   @RoutePermission('delete-permission')
+  @RemoveDoc()
   remove(@Param('id', IdFormatValidationPipe) id: number) {
     return this.removePermissionUseCase.execute(id);
   }

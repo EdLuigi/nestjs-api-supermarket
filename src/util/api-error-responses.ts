@@ -1,7 +1,7 @@
 import { HttpStatus } from '@nestjs/common';
 
 export const BadFormatIdErrorObj = {
-  description: 'Variable id is in a bad format',
+  description: 'Id value is in a bad format',
   status: HttpStatus.BAD_REQUEST,
 };
 
