@@ -32,8 +32,8 @@ async function bootstrap() {
       'Permissions related operations, login and permissions required',
     )
     .addTag(
-      'User-Roles',
-      'User-Roles foreign keys related operations, login and permissions required',
+      'Users-Roles',
+      'Users-Roles foreign keys related operations, login and permissions required',
     )
     .addTag(
       'Role-Permissions',

@@ -67,7 +67,7 @@ export const NotFoundSupplierErrorObj = {
 };
 
 export const NotFoundUserRoleErrorObj = {
-  description: 'User role does not exist',
+  description: 'User Role does not exist',
   status: HttpStatus.NOT_FOUND,
 };
 
