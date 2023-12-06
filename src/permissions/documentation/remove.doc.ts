@@ -29,10 +29,15 @@ export function RemoveDoc() {
     ApiOkResponse({
       description: 'OK response',
     }),
-    ApiResponse(BadFormatIdErrorObj),
+    ApiResponse({
+      description:
+        BadFormatIdErrorObj.description +
+        ' | ' +
+        ForeignKeyPermissionErrorObj.description,
+      status: BadFormatIdErrorObj.status,
+    }),
     ApiResponse(UnauthorizedErrorObj),
     ApiResponse(ForbiddenErrorObj),
-    ApiResponse(ForeignKeyPermissionErrorObj),
     ApiResponse(NotFoundPermissionErrorObj),
     ApiResponse(InternalServerErrorObj),
   );
