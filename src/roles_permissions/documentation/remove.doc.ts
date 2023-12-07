@@ -5,6 +5,7 @@ import {
   NotFoundRolePermissionErrorObj,
   UnauthorizedErrorObj,
 } from '@/utils/api-error-responses';
+import { OkResponseObj } from '@/utils/api-ok-responses';
 import { applyDecorators } from '@nestjs/common';
 import {
   ApiOkResponse,
@@ -25,9 +26,8 @@ export function RemoveDoc() {
       description: 'Role-Permission id to be deleted',
       allowEmptyValue: false,
     }),
-    ApiOkResponse({
-      description: 'OK response',
-    }),
+
+    ApiOkResponse(OkResponseObj),
     ApiResponse(BadFormatIdErrorObj),
     ApiResponse(UnauthorizedErrorObj),
     ApiResponse(ForbiddenErrorObj),

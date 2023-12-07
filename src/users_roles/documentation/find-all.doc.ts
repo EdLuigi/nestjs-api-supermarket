@@ -3,6 +3,7 @@ import {
   InternalServerErrorObj,
   UnauthorizedErrorObj,
 } from '@/utils/api-error-responses';
+import { OkResponseObj } from '@/utils/api-ok-responses';
 import { applyDecorators } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
@@ -12,8 +13,9 @@ export function FindAllDoc() {
       description:
         'Show all users-roles information. Permission required: ["find-all-users-roles"]',
     }),
+
     ApiOkResponse({
-      description: 'OK response',
+      description: OkResponseObj.description,
       schema: {
         example: [
           {

@@ -3,6 +3,7 @@ import {
   InternalServerErrorObj,
   UnauthorizedErrorObj,
 } from '@/utils/api-error-responses';
+import { OkResponseObj } from '@/utils/api-ok-responses';
 import { applyDecorators } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
@@ -12,8 +13,9 @@ export function FindMeDoc() {
       description:
         'Show all information of logged user. Permission required: ["find-me"]',
     }),
+
     ApiOkResponse({
-      description: 'OK response',
+      description: OkResponseObj.description,
       schema: {
         example: {
           id: 3,

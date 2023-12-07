@@ -3,6 +3,7 @@ import {
   ForbiddenErrorObj,
   InternalServerErrorObj,
 } from '@/utils/api-error-responses';
+import { OkResponseObj } from '@/utils/api-ok-responses';
 import { applyDecorators } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
@@ -12,8 +13,9 @@ export function UpdateMeDoc() {
       description:
         'Update logged user information. Permission required: ["update-me"]',
     }),
+
     ApiOkResponse({
-      description: 'OK response',
+      description: OkResponseObj.description,
       schema: {
         example: {
           id: 3,

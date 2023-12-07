@@ -5,6 +5,7 @@ import {
   NotFoundRoleErrorObj,
   UnauthorizedErrorObj,
 } from '@/utils/api-error-responses';
+import { OkResponseObj } from '@/utils/api-ok-responses';
 import { applyDecorators } from '@nestjs/common';
 import {
   ApiOkResponse,
@@ -25,8 +26,9 @@ export function UpdateDoc() {
       description: 'Role id to be updated',
       allowEmptyValue: false,
     }),
+
     ApiOkResponse({
-      description: 'OK response',
+      description: OkResponseObj.description,
       schema: {
         example: {
           id: 3,

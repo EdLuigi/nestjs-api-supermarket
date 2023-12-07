@@ -6,6 +6,7 @@ import {
   NotFoundPermissionErrorObj,
   UnauthorizedErrorObj,
 } from '@/utils/api-error-responses';
+import { OkResponseObj } from '@/utils/api-ok-responses';
 import { applyDecorators } from '@nestjs/common';
 import {
   ApiOkResponse,
@@ -26,8 +27,9 @@ export function RemoveDoc() {
       description: 'Permission id to be deleted',
       allowEmptyValue: false,
     }),
+
     ApiOkResponse({
-      description: 'OK response',
+      description: OkResponseObj.description,
     }),
     ApiResponse({
       description:

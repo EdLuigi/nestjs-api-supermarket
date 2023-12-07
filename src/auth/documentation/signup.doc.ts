@@ -2,22 +2,23 @@ import {
   CredentialsTakenErrorObj,
   InternalServerErrorObj,
 } from '@/utils/api-error-responses';
-import { HttpStatus, applyDecorators } from '@nestjs/common';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { CreatedResponseObj } from '@/utils/api-ok-responses';
+import { applyDecorators } from '@nestjs/common';
+import { ApiCreatedResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 export function SignupDoc() {
   return applyDecorators(
     ApiOperation({
       description: 'Register a new user',
     }),
-    ApiResponse({
-      description: 'Created response',
+
+    ApiCreatedResponse({
+      description: CreatedResponseObj.description,
       schema: {
         example: {
           access_token: 'string',
         },
       },
-      status: HttpStatus.CREATED,
     }),
     ApiResponse(CredentialsTakenErrorObj),
     ApiResponse(InternalServerErrorObj),

@@ -4,8 +4,9 @@ import {
   InternalServerErrorObj,
   UnauthorizedErrorObj,
 } from '@/utils/api-error-responses';
+import { CreatedResponseObj } from '@/utils/api-ok-responses';
 import { applyDecorators } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 export function CreateDoc() {
   return applyDecorators(
@@ -13,8 +14,9 @@ export function CreateDoc() {
       description:
         'Create a permission. Permission required: ["create-permission"]',
     }),
-    ApiOkResponse({
-      description: 'Created response',
+
+    ApiCreatedResponse({
+      description: CreatedResponseObj.description,
       schema: {
         example: {
           id: 37,
