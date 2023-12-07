@@ -1,4 +1,4 @@
-import { NotFoundUserErrorObj } from '@/util/api-error-responses';
+import { NotFoundUserErrorObj } from '@/utils/api-error-responses';
 import { HttpException } from '@nestjs/common';
 
 export class NotFoundUserError extends HttpException {

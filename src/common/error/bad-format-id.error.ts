@@ -1,4 +1,4 @@
-import { BadFormatIdErrorObj } from '@/util/api-error-responses';
+import { BadFormatIdErrorObj } from '@/utils/api-error-responses';
 import { HttpException } from '@nestjs/common';
 
 export class BadFormatIdError extends HttpException {

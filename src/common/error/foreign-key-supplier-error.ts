@@ -1,4 +1,4 @@
-import { ForeignKeySupplierErrorObj } from '@/util/api-error-responses';
+import { ForeignKeySupplierErrorObj } from '@/utils/api-error-responses';
 import { HttpException } from '@nestjs/common';
 
 export class ForeignKeySupplierError extends HttpException {

@@ -5,7 +5,7 @@ import {
   InternalServerErrorObj,
   NotFoundRoleErrorObj,
   UnauthorizedErrorObj,
-} from '@/util/api-error-responses';
+} from '@/utils/api-error-responses';
 import { applyDecorators } from '@nestjs/common';
 import {
   ApiOkResponse,

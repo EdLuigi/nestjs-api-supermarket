@@ -1,7 +1,7 @@
 import {
   IncorrectCredentialsErrorObj,
   InternalServerErrorObj,
-} from '@/util/api-error-responses';
+} from '@/utils/api-error-responses';
 import { HttpStatus, applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 

@@ -1,4 +1,4 @@
-import { NotFoundSupplierErrorObj } from '@/util/api-error-responses';
+import { NotFoundSupplierErrorObj } from '@/utils/api-error-responses';
 import { HttpException } from '@nestjs/common';
 
 export class NotFoundSupplierError extends HttpException {

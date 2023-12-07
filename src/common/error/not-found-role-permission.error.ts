@@ -1,4 +1,4 @@
-import { NotFoundRolePermissionErrorObj } from '@/util/api-error-responses';
+import { NotFoundRolePermissionErrorObj } from '@/utils/api-error-responses';
 import { HttpException } from '@nestjs/common';
 
 export class NotFoundRolePermissionError extends HttpException {

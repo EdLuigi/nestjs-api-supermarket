@@ -1,4 +1,4 @@
-import { PermissionType } from '@/util/permission-types';
+import { PermissionType } from '@/utils/permission-types';
 
 export class Permission {
   id?: number;
