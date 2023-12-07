@@ -13,6 +13,12 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { CreateDoc } from '../documentation/create.doc';
+import { FindAllDoc } from '../documentation/find-all.doc';
+import { FindBySupplierDoc } from '../documentation/find-by-supplier.doc';
+import { FindOneDoc } from '../documentation/find-one.doc';
+import { RemoveDoc } from '../documentation/remove.doc';
+import { UpdateDoc } from '../documentation/update.doc';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 import { CreateProductUseCase } from '../use-case/create-product.use-case';
@@ -36,32 +42,37 @@ export class ProductsController {
     private readonly removeProductUseCase: RemoveProductUseCase,
   ) {}
 
-  @RoutePermission('create-product')
   @Post()
+  @RoutePermission('create-product')
+  @CreateDoc()
   create(@Body() createProductDto: CreateProductDto) {
     return this.createProductUseCase.execute(createProductDto);
   }
 
-  @RoutePermission('find-all-products')
   @Get()
+  @RoutePermission('find-all-products')
+  @FindAllDoc()
   findAll() {
     return this.findAllProductsUseCase.execute();
   }
 
-  @RoutePermission('find-product')
   @Get(':id')
+  @RoutePermission('find-product')
+  @FindOneDoc()
   findOne(@Param('id', IdFormatValidationPipe) id: number) {
     return this.findOneProductUseCase.execute(id);
   }
 
-  @RoutePermission('find-products-by-supplier')
   @Get('/supplier/:id')
+  @RoutePermission('find-products-by-supplier')
+  @FindBySupplierDoc()
   findBySupplier(@Param('id', IdFormatValidationPipe) supplierId: number) {
     return this.findBySupplierUseCase.execute(supplierId);
   }
 
-  @RoutePermission('update-product')
   @Patch(':id')
+  @RoutePermission('update-product')
+  @UpdateDoc()
   update(
     @Param('id', IdFormatValidationPipe) id: number,
     @Body() updateProductDto: UpdateProductDto,
@@ -69,8 +80,9 @@ export class ProductsController {
     return this.updateProductUseCase.execute(id, updateProductDto);
   }
 
-  @RoutePermission('delete-product')
   @Delete(':id')
+  @RoutePermission('delete-product')
+  @RemoveDoc()
   remove(@Param('id', IdFormatValidationPipe) id: number) {
     return this.removeProductUseCase.execute(id);
   }

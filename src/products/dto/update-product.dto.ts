@@ -1,3 +1,4 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsInt,
   IsNumber,
@@ -11,22 +12,26 @@ import {
 export class UpdateProductDto {
   @IsString()
   @IsOptional()
+  @ApiPropertyOptional()
   description: string;
 
   @IsInt()
   @Min(0)
   @NotEquals(null)
   @ValidateIf((object, value) => value !== undefined)
+  @ApiProperty()
   stock: number;
 
   @IsNumber()
   @Min(0)
   @NotEquals(null)
   @ValidateIf((object, value) => value !== undefined)
+  @ApiProperty()
   price: number;
 
   @IsInt()
   @Min(0)
   @IsOptional()
+  @ApiPropertyOptional()
   discount_percentage: number;
 }

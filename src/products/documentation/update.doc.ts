@@ -2,7 +2,7 @@ import {
   BadFormatIdErrorObj,
   ForbiddenErrorObj,
   InternalServerErrorObj,
-  NotFoundUserErrorObj,
+  NotFoundProductErrorObj,
   UnauthorizedErrorObj,
 } from '@/utils/api-error-responses';
 import { OkResponseObj } from '@/utils/api-ok-responses';
@@ -14,16 +14,16 @@ import {
   ApiResponse,
 } from '@nestjs/swagger';
 
-export function FindByUserDoc() {
+export function UpdateDoc() {
   return applyDecorators(
     ApiOperation({
       description:
-        'Show user-role information by user id. Permission required: ["find-user-role-by-user-id"]',
+        'Update product information by product id. Permission required: ["update-product"]',
     }),
     ApiParam({
       name: 'id',
       type: 'number',
-      description: 'User id to search User-Role',
+      description: 'Product id to be updated',
       allowEmptyValue: false,
     }),
 
@@ -31,18 +31,22 @@ export function FindByUserDoc() {
       description: OkResponseObj.description,
       schema: {
         example: {
-          id: 3,
-          userId: 3,
-          roleId: 3,
-          createdAt: '2023-12-01T13:22:46.995Z',
-          updatedAt: null,
+          id: 5,
+          supplierId: 3,
+          name: 'name test',
+          description: 'description updated',
+          stock: 1,
+          price: '1.25',
+          discount_percentage: 50,
+          createdAt: '2023-12-07T20:43:29.559Z',
+          updatedAt: '2023-12-07T20:44:32.150Z',
         },
       },
     }),
     ApiResponse(BadFormatIdErrorObj),
     ApiResponse(UnauthorizedErrorObj),
     ApiResponse(ForbiddenErrorObj),
-    ApiResponse(NotFoundUserErrorObj),
+    ApiResponse(NotFoundProductErrorObj),
     ApiResponse(InternalServerErrorObj),
   );
 }
