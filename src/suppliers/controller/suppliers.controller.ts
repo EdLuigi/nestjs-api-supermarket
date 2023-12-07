@@ -13,6 +13,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { CreateDoc } from '../documentation/create.doc';
+import { FindAllDoc } from '../documentation/find-all.doc';
+import { FindOneDoc } from '../documentation/find-one.doc';
+import { RemoveDoc } from '../documentation/remove.doc';
+import { UpdateDoc } from '../documentation/update.doc';
 import { CreateSupplierDto } from '../dto/create-supplier.dto';
 import { UpdateSupplierDto } from '../dto/update-supplier.dto';
 import { CreateSupplierUseCase } from '../use-case/create-supplier.use-case';
@@ -36,24 +41,28 @@ export class SuppliersController {
 
   @Post()
   @RoutePermission('create-supplier')
+  @CreateDoc()
   create(@Body() createSupplierDto: CreateSupplierDto) {
     return this.createSupplierUseCase.execute(createSupplierDto);
   }
 
   @Get()
   @RoutePermission('find-all-suppliers')
+  @FindAllDoc()
   findAll() {
     return this.findAllSuppliersUseCase.execute();
   }
 
   @Get(':id')
   @RoutePermission('find-supplier')
+  @FindOneDoc()
   findOne(@Param('id', IdFormatValidationPipe) id: number) {
     return this.findOneSupplierUseCase.execute(id);
   }
 
   @Patch(':id')
   @RoutePermission('update-supplier')
+  @UpdateDoc()
   update(
     @Param('id', IdFormatValidationPipe) id: number,
     @Body() updateSupplierDto: UpdateSupplierDto,
@@ -63,6 +72,7 @@ export class SuppliersController {
 
   @Delete(':id')
   @RoutePermission('delete-supplier')
+  @RemoveDoc()
   remove(@Param('id', IdFormatValidationPipe) id: number) {
     return this.removeSupplierUseCase.execute(id);
   }
