@@ -7,11 +7,27 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   async findAll() {
-    return await this.prisma.user.findMany({
+    const users = await this.prisma.user.findMany({
       orderBy: {
-        id: 'asc',
+        createdAt: 'desc',
       },
     });
+
+    const userRoles = await this.prisma.userRole.findMany({
+      include: { role: true },
+    });
+
+    let usersData = [];
+    for (let user of users) {
+      let foundUserRole = userRoles.find((i) => i.userId === user.id);
+
+      let roleName = foundUserRole?.role?.name;
+      let newUserData = { ...user, role: roleName };
+      delete newUserData.password;
+      usersData.push(newUserData);
+    }
+
+    return usersData;
   }
 
   async findMe(id: number) {
