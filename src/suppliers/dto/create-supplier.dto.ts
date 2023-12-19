@@ -1,3 +1,4 @@
+import { registryDetails } from '@/utils/api-property-titles';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 
@@ -11,6 +12,6 @@ export class CreateSupplierDto {
   companyName: string;
 
   @IsString()
-  @ApiProperty()
+  @ApiProperty(registryDetails)
   registry: string;
 }

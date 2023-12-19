@@ -5,6 +5,11 @@ export const BadFormatIdErrorObj = {
   status: HttpStatus.BAD_REQUEST,
 };
 
+export const BadFormatRegistryErrorObj = {
+  description: 'Registry value should be a valid CPF or CNPJ',
+  status: HttpStatus.BAD_REQUEST,
+};
+
 export const CredentialsTakenErrorObj = {
   description: 'Credentials already taken',
   status: HttpStatus.BAD_REQUEST,

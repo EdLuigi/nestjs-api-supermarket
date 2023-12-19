@@ -19,7 +19,7 @@ const validateBusinessRules = async () => {
 };
 
 const findFirstUserRole = async () => {
-  const id = '1';
+  const id = '2';
   const firstUserRole = await global.__CONTROLLER__.findByUserId(+id);
-  expect(firstUserRole.id === 1).toBe(true);
+  expect(firstUserRole.id === 2).toBe(true);
 };

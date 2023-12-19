@@ -1,4 +1,5 @@
 import {
+  BadFormatRegistryErrorObj,
   DuplicateKeyValueErrorObj,
   ForbiddenErrorObj,
   InternalServerErrorObj,
@@ -28,7 +29,13 @@ export function CreateDoc() {
         },
       },
     }),
-    ApiResponse(DuplicateKeyValueErrorObj),
+    ApiResponse({
+      description:
+        BadFormatRegistryErrorObj.description +
+        ' | ' +
+        DuplicateKeyValueErrorObj.description,
+      status: BadFormatRegistryErrorObj.status,
+    }),
     ApiResponse(UnauthorizedErrorObj),
     ApiResponse(ForbiddenErrorObj),
     ApiResponse(InternalServerErrorObj),

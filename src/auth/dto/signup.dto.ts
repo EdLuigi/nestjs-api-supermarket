@@ -1,3 +1,4 @@
+import { registryDetails } from '@/utils/api-property-titles';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
@@ -14,7 +15,7 @@ export class SignupDto {
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty(registryDetails)
   registry: string;
 
   @IsString()

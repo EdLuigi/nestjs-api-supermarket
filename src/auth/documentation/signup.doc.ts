@@ -1,4 +1,5 @@
 import {
+  BadFormatRegistryErrorObj,
   CredentialsTakenErrorObj,
   InternalServerErrorObj,
 } from '@/utils/api-error-responses';
@@ -20,7 +21,13 @@ export function SignupDoc() {
         },
       },
     }),
-    ApiResponse(CredentialsTakenErrorObj),
+    ApiResponse({
+      description:
+        BadFormatRegistryErrorObj.description +
+        ' | ' +
+        CredentialsTakenErrorObj.description,
+      status: BadFormatRegistryErrorObj.status,
+    }),
     ApiResponse(InternalServerErrorObj),
   );
 }
