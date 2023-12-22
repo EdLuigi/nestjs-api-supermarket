@@ -90,3 +90,8 @@ export const InternalServerErrorObj = {
   description: 'Internal server error',
   status: HttpStatus.INTERNAL_SERVER_ERROR,
 };
+
+export const EmailNotSentErrorObj = {
+  description: 'Could not send email',
+  status: HttpStatus.INTERNAL_SERVER_ERROR,
+};
