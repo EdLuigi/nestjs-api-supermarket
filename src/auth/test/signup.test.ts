@@ -4,7 +4,7 @@ import { BadFormatRegistryError } from '@/common/error/bad-format-registry.error
 
 const authMock: SignupDto = {
   name: 'name-test',
-  email: 'email-test',
+  email: 'email_test@mail.com',
   registry: '827.224.678-36',
   password: 'password-test',
 };
@@ -12,6 +12,7 @@ const authMock: SignupDto = {
 export const SignupTest = () => {
   // TEST: "registry" should not be valid, should throw "BadFormatRegistryError()"
   //       "registry" should be taken, should throw "CredentialsTakenError()"
+  //       "email" should be taken, should throw "CredentialsTakenError()"
   it('should validate business rules', validateBusinessRules);
 
   // TEST: should signup, no errors
@@ -19,7 +20,7 @@ export const SignupTest = () => {
 };
 
 const validateBusinessRules = async () => {
-  expect.assertions(2);
+  expect.assertions(3);
 
   try {
     const registryWRONG: SignupDto = {
@@ -38,7 +39,17 @@ const validateBusinessRules = async () => {
     };
     await global.__CONTROLLER__.signup(registryWRONG);
   } catch (error) {
-    expect(error).toStrictEqual(new CredentialsTakenError());
+    expect(error).toStrictEqual(new CredentialsTakenError('registry'));
+  }
+
+  try {
+    const emailWRONG: SignupDto = {
+      ...authMock,
+      email: 'user2@email.com',
+    };
+    await global.__CONTROLLER__.signup(emailWRONG);
+  } catch (error) {
+    expect(error).toStrictEqual(new CredentialsTakenError('email'));
   }
 };
 

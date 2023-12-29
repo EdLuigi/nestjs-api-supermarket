@@ -10,11 +10,12 @@ datasource db {
 model User {
   id        Int       @id @default(autoincrement())
   name      String?
-  email     String?
+  email     String    @unique
   registry  String    @unique
   password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime?
+  verified  Boolean   @default(false)
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
 
   userRoles UserRole?
 
@@ -25,8 +26,8 @@ model Role {
   id          Int       @id @default(autoincrement())
   name        String    @unique
   description String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
 
   userRoles       UserRole[]
   rolePermissions RolePermission[]
@@ -38,8 +39,8 @@ model Permission {
   id          Int       @id @default(autoincrement())
   name        String    @unique
   description String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
 
   rolePermissions RolePermission[]
 
@@ -48,24 +49,24 @@ model Permission {
 
 model UserRole {
   id        Int       @id @default(autoincrement())
-  userId    Int       @unique
+  userId    Int       @unique @map("user_id")
   user      User      @relation(fields: [userId], references: [id])
-  roleId    Int
+  roleId    Int       @map("role_id")
   role      Role      @relation(fields: [roleId], references: [id])
-  createdAt DateTime  @default(now())
-  updatedAt DateTime?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
 
   @@map("users_roles")
 }
 
 model RolePermission {
   id           Int        @id @default(autoincrement())
-  roleId       Int
+  roleId       Int        @map("role_id")
   role         Role       @relation(fields: [roleId], references: [id])
-  permissionId Int
+  permissionId Int        @map("permission_id")
   permission   Permission @relation(fields: [permissionId], references: [id])
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime?
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime?  @map("updated_at")
 
   @@unique([roleId, permissionId])
   @@map("roles_permissions")
@@ -74,10 +75,10 @@ model RolePermission {
 model Supplier {
   id          Int       @id @default(autoincrement())
   name        String
-  companyName String
+  companyName String    @map("company_name")
   registry    String    @unique
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
 
   products Product[]
 
@@ -85,16 +86,16 @@ model Supplier {
 }
 
 model Product {
-  id                  Int       @id @default(autoincrement())
-  supplierId          Int
-  supplier            Supplier  @relation(fields: [supplierId], references: [id])
-  name                String
-  description         String?
-  stock               Int       @default(0)
-  price               Decimal   @default(0)
-  discount_percentage Int?      @default(0)
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime?
+  id                 Int       @id @default(autoincrement())
+  supplierId         Int       @map("supplier_id")
+  supplier           Supplier  @relation(fields: [supplierId], references: [id])
+  name               String
+  description        String?
+  stock              Int       @default(0)
+  price              Decimal   @default(0)
+  discountPercentage Int?      @default(0) @map("discount_percentage")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime? @map("updated_at")
 
   @@map("products")
 }

@@ -30,9 +30,9 @@ export class AuthService {
 
   async signToken(
     userId: number,
-    registry: string,
+    email: string,
   ): Promise<{ access_token: string }> {
-    const payload = { sub: userId, registry };
+    const payload = { sub: userId, email };
     const secret = this.config.get('JWT_SECRET');
 
     const token = await this.jwt.signAsync(payload, {

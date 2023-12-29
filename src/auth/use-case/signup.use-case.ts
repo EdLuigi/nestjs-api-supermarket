@@ -21,10 +21,13 @@ export class SignupUseCase {
       cpf.isValid(signupData.registry) || cnpj.isValid(signupData.registry);
     if (!registryIsValid) throw new BadFormatRegistryError();
 
+    const emailExists = await this.usersService.findByEmail(signupData.email);
+    if (!!emailExists) throw new CredentialsTakenError('email');
+
     const registryExists = await this.usersService.findByRegistry(
       signupData.registry,
     );
-    if (!!registryExists) throw new CredentialsTakenError();
+    if (!!registryExists) throw new CredentialsTakenError('registry');
 
     const newUser = await this.authService.signup(signupData);
 

@@ -1,12 +1,12 @@
 import { registryDetails } from '@/utils/api-property-titles';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class SigninDto {
-  @IsString()
+  @IsEmail()
   @IsNotEmpty()
   @ApiProperty(registryDetails)
-  registry: string;
+  email: string;
 
   @IsString()
   @IsNotEmpty()

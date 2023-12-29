@@ -78,4 +78,8 @@ export class UsersService {
   async findByRegistry(registry: string) {
     return await this.prisma.user.findFirst({ where: { registry } });
   }
+
+  async findByEmail(email: string) {
+    return await this.prisma.user.findFirst({ where: { email } });
+  }
 }
