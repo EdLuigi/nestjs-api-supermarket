@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as argon from 'argon2';
 import { SignupDto } from '../dto/signup.dto';
+import { EmailToken } from '../entities/email-token.entity';
 
 @Injectable()
 export class AuthService {
@@ -41,5 +42,35 @@ export class AuthService {
     });
 
     return { access_token: token };
+  }
+
+  async createEmailToken(userId: number, email: string): Promise<EmailToken> {
+    const dueDateTime = new Date();
+    const expireLimit = 30;
+    dueDateTime.setMinutes(dueDateTime.getMinutes() + expireLimit);
+
+    return await this.prisma.emailToken.create({
+      data: {
+        userId: userId,
+        email: email,
+        createdAt: new Date(),
+        dueDate: dueDateTime,
+      },
+    });
+  }
+
+  async findEmailToken(token: string) {
+    return await this.prisma.emailToken.findFirst({ where: { id: token } });
+  }
+
+  async verifyEmail(id: number) {
+    return await this.prisma.user.update({
+      where: { id },
+      data: { verified: true },
+    });
+  }
+
+  async removeEmailToken(token: string) {
+    await this.prisma.emailToken.delete({ where: { id: token } });
   }
 }

@@ -33,5 +33,5 @@ export class UpdateProductDto {
   @Min(0)
   @IsOptional()
   @ApiPropertyOptional()
-  discount_percentage: number;
+  discountPercentage: number;
 }

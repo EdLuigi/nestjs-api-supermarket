@@ -17,7 +17,8 @@ model User {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @map("updated_at")
 
-  userRoles UserRole?
+  userRoles  UserRole?
+  EmailToken EmailToken?
 
   @@map("users")
 }
@@ -98,4 +99,15 @@ model Product {
   updatedAt          DateTime? @map("updated_at")
 
   @@map("products")
+}
+
+model EmailToken {
+  id        String   @id @default(uuid())
+  userId    Int      @unique @map("user_id")
+  user      User     @relation(fields: [userId], references: [id])
+  email     String   @map("email")
+  createdAt DateTime @default(now()) @map("created_at")
+  dueDate   DateTime @default(now()) @map("due_date")
+
+  @@map("email_tokens")
 }

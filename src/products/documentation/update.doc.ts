@@ -37,7 +37,7 @@ export function UpdateDoc() {
           description: 'description updated',
           stock: 1,
           price: '1.25',
-          discount_percentage: 50,
+          discountPercentage: 50,
           createdAt: '2023-12-07T20:43:29.559Z',
           updatedAt: '2023-12-07T20:44:32.150Z',
         },

@@ -20,11 +20,6 @@ export const DuplicateKeyValueErrorObj = {
   status: HttpStatus.BAD_REQUEST,
 };
 
-export const ForbiddenErrorObj = {
-  description: 'User does not have the required permissions',
-  status: HttpStatus.FORBIDDEN,
-};
-
 export const ForeignKeyPermissionErrorObj = {
   description: 'Permission has foreign keys and cannot be removed',
   status: HttpStatus.BAD_REQUEST,
@@ -44,6 +39,21 @@ export const ForeignKeySupplierErrorObj = {
 export const IncorrectCredentialsErrorObj = {
   description: 'Credentials incorrect',
   status: HttpStatus.BAD_REQUEST,
+};
+
+export const ExpiredTokenErrorObj = {
+  description: 'Token is expired',
+  status: HttpStatus.BAD_REQUEST,
+};
+
+export const ForbiddenErrorObj = {
+  description: 'User does not have the required permissions',
+  status: HttpStatus.FORBIDDEN,
+};
+
+export const UnverifiedUserErrorObj = {
+  description: 'User email is not verified',
+  status: HttpStatus.FORBIDDEN,
 };
 
 export const NotFoundPermissionErrorObj = {
@@ -78,6 +88,11 @@ export const NotFoundUserRoleErrorObj = {
 
 export const NotFoundUserErrorObj = {
   description: 'User does not exist',
+  status: HttpStatus.NOT_FOUND,
+};
+
+export const NotFoundTokenErrorObj = {
+  description: 'Token does not exist',
   status: HttpStatus.NOT_FOUND,
 };
 

@@ -5,6 +5,6 @@ export class Product {
   description?: string;
   stock: number;
   price: number;
-  discount_percentage?: number;
+  discountPercentage?: number;
   createdAt: Date;
 }

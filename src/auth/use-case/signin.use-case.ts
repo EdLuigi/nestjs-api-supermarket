@@ -1,4 +1,5 @@
 import { IncorrectCredentialsError } from '@/common/error/incorrect-credentials.error';
+import { UnverifiedUserError } from '@/common/error/unverified-user.error';
 import { UsersService } from '@/users/service/users.service';
 import { Injectable } from '@nestjs/common';
 import * as argon from 'argon2';
@@ -15,6 +16,7 @@ export class SigninUseCase {
   async execute(signinData: SigninDto) {
     const emailExists = await this.usersService.findByEmail(signinData.email);
     if (!emailExists) throw new IncorrectCredentialsError();
+    if (!emailExists.verified) throw new UnverifiedUserError();
 
     const passwordMatches = await argon.verify(
       emailExists.password,

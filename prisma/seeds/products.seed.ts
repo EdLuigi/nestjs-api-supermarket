@@ -7,7 +7,7 @@ export const productsSeeds: Product[] = [
     description: '',
     stock: 30,
     price: 25,
-    discount_percentage: 0,
+    discountPercentage: 0,
     createdAt: new Date(),
   },
   {
@@ -16,7 +16,7 @@ export const productsSeeds: Product[] = [
     description: '',
     stock: 100,
     price: 35.99,
-    discount_percentage: 0,
+    discountPercentage: 0,
     createdAt: new Date(),
   },
   {
@@ -26,7 +26,7 @@ export const productsSeeds: Product[] = [
       'Corte suíno selecionado, já temperado com ervas finas e limão e embalado no saco assa fácil, o produto vai direto do freezer para o forno. Não é necessário descongelar nem retemperar, não suja o forno.',
     stock: 50,
     price: 50,
-    discount_percentage: 25,
+    discountPercentage: 25,
     createdAt: new Date(),
   },
 ];

@@ -4,6 +4,7 @@ export class User {
   email: string;
   registry: string;
   password: string;
+  verified: boolean;
   createdAt: Date;
   updatedAt?: Date;
 }

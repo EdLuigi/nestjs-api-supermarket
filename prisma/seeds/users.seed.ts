@@ -8,6 +8,7 @@ export const usersSeed: User[] = [
     registry: '348.435.361-99',
     password:
       '$argon2id$v=19$m=65536,t=3,p=4$CTw1zYIJlYncRVNwmbbVog$vsDZBiy5heHyw1r8TuqwBm8eEBnCOzuuVJE9NTUow10',
+    verified: true,
     createdAt: new Date(),
   },
   {
@@ -16,6 +17,7 @@ export const usersSeed: User[] = [
     registry: '462.339.146-98',
     password:
       '$argon2id$v=19$m=65536,t=3,p=4$CTw1zYIJlYncRVNwmbbVog$vsDZBiy5heHyw1r8TuqwBm8eEBnCOzuuVJE9NTUow10',
+    verified: true,
     createdAt: new Date(),
   },
   {
@@ -24,6 +26,7 @@ export const usersSeed: User[] = [
     registry: '537.095.483-65',
     password:
       '$argon2id$v=19$m=65536,t=3,p=4$CTw1zYIJlYncRVNwmbbVog$vsDZBiy5heHyw1r8TuqwBm8eEBnCOzuuVJE9NTUow10',
+    verified: true,
     createdAt: new Date(),
   },
   {
@@ -32,6 +35,7 @@ export const usersSeed: User[] = [
     registry: '223.162.491-59',
     password:
       '$argon2id$v=19$m=65536,t=3,p=4$CTw1zYIJlYncRVNwmbbVog$vsDZBiy5heHyw1r8TuqwBm8eEBnCOzuuVJE9NTUow10',
+    verified: true,
     createdAt: new Date(),
   },
 ];

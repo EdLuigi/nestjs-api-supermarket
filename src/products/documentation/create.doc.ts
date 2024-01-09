@@ -24,7 +24,7 @@ export function CreateDoc() {
           description: 'description test',
           stock: 0,
           price: '10.55',
-          discount_percentage: 0,
+          discountPercentage: 0,
           createdAt: '2023-12-07T20:23:15.657Z',
           updatedAt: null,
         },

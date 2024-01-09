@@ -18,7 +18,7 @@ const validateBusinessRules = async () => {
       description: 'description test',
       stock: 1,
       price: 1,
-      discount_percentage: 1,
+      discountPercentage: 1,
     };
     await global.__CONTROLLER__.create(productMock);
   } catch (error) {
@@ -33,7 +33,7 @@ const createProduct = async () => {
     description: 'description test1',
     stock: 1,
     price: 1,
-    discount_percentage: 1,
+    discountPercentage: 1,
   };
 
   const newProduct = await global.__CONTROLLER__.create(productMock);

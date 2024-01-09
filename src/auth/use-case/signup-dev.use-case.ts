@@ -1,6 +1,5 @@
 import { BadFormatRegistryError } from '@/common/error/bad-format-registry.error';
 import { CredentialsTakenError } from '@/common/error/credentials-taken.error';
-import { EmailService } from '@/common/service/email.service';
 import { UsersService } from '@/users/service/users.service';
 import { CreateUsersRoleDto } from '@/users_roles/dto/create-users_role.dto';
 import { UsersRolesService } from '@/users_roles/service/users_roles.service';
@@ -10,12 +9,11 @@ import { SignupDto } from '../dto/signup.dto';
 import { AuthService } from '../service/auth.service';
 
 @Injectable()
-export class SignupUseCase {
+export class SignupDevUseCase {
   constructor(
     private authService: AuthService,
     private usersService: UsersService,
     private usersRolesService: UsersRolesService,
-    private emailService: EmailService,
   ) {}
 
   async execute(signupData: SignupDto) {
@@ -32,6 +30,7 @@ export class SignupUseCase {
     if (!!registryExists) throw new CredentialsTakenError('registry');
 
     const newUser = await this.authService.signup(signupData);
+    await this.authService.verifyEmail(newUser.id);
 
     const newUserRoleData: CreateUsersRoleDto = {
       userId: newUser.id,
@@ -40,10 +39,6 @@ export class SignupUseCase {
 
     await this.usersRolesService.create(newUserRoleData);
 
-    const token = await this.authService.createEmailToken(
-      newUser.id,
-      newUser.email,
-    );
-    await this.emailService.send(token);
+    return await this.authService.signToken(newUser.id, newUser.registry);
   }
 }
