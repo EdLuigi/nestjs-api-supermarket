@@ -1,15 +1,15 @@
-import { BadFormatRegistryError } from '@/common/error/bad-format-registry.error';
 import { CredentialsTakenError } from '@/common/error/credentials-taken.error';
 import { SignupDto } from '../dto/signup.dto';
+import { BadFormatRegistryError } from '@/common/error/bad-format-registry.error';
 
 const authMock: SignupDto = {
-  name: 'name-test',
-  email: 'email_test@mail.com',
-  registry: '827.224.678-36',
-  password: 'password-test',
+  name: 'name-test-dev',
+  email: 'email_test_dev@mail.com',
+  registry: '694.118.648-80',
+  password: 'password-test-dev',
 };
 
-export const SignupTest = () => {
+export const SignupDevTest = () => {
   // TEST: "registry" should not be valid, should throw "BadFormatRegistryError()"
   //       "registry" should be taken, should throw "CredentialsTakenError()"
   //       "email" should be taken, should throw "CredentialsTakenError()"
@@ -27,7 +27,7 @@ const validateBusinessRules = async () => {
       ...authMock,
       registry: 'registryWrong',
     };
-    await global.__CONTROLLER__.signup(registryWRONG);
+    await global.__CONTROLLER__.signupDev(registryWRONG);
   } catch (error) {
     expect(error).toStrictEqual(new BadFormatRegistryError());
   }
@@ -37,7 +37,7 @@ const validateBusinessRules = async () => {
       ...authMock,
       registry: '462.339.146-98',
     };
-    await global.__CONTROLLER__.signup(registryWRONG);
+    await global.__CONTROLLER__.signupDev(registryWRONG);
   } catch (error) {
     expect(error).toStrictEqual(new CredentialsTakenError('registry'));
   }
@@ -47,12 +47,13 @@ const validateBusinessRules = async () => {
       ...authMock,
       email: 'user2@email.com',
     };
-    await global.__CONTROLLER__.signup(emailWRONG);
+    await global.__CONTROLLER__.signupDev(emailWRONG);
   } catch (error) {
     expect(error).toStrictEqual(new CredentialsTakenError('email'));
   }
 };
 
 const Signup = async () => {
-  await global.__CONTROLLER__.signup(authMock);
+  const signupToken = await global.__CONTROLLER__.signupDev(authMock);
+  expect(!!signupToken).toBe(true);
 };

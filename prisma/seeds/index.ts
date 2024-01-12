@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { emailTokensSeeds } from './email-tokens.seed';
 import { permissionsSeed } from './permissions.seed';
 import { productsSeeds } from './products.seed';
 import { rolesPermissionsSeeds } from './roles-permissions.seed';
@@ -42,6 +43,11 @@ async function main() {
 
   await prisma.product.createMany({
     data: productsSeeds,
+    skipDuplicates: true,
+  });
+
+  await prisma.emailToken.createMany({
+    data: emailTokensSeeds,
     skipDuplicates: true,
   });
 }

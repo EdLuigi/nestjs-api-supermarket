@@ -3,6 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { SigninDoc } from '../documentation/signin.doc';
 import { SignupDevDoc } from '../documentation/signup-dev.doc';
 import { SignupDoc } from '../documentation/signup.doc';
+import { VerifyEmailDoc } from '../documentation/verify-email.doc';
 import { SigninDto } from '../dto/signin.dto';
 import { SignupDto } from '../dto/signup.dto';
 import { SigninUseCase } from '../use-case/signin.use-case';
@@ -38,8 +39,8 @@ export class AuthController {
     return this.signinUseCase.execute(dto);
   }
 
-  // TODO: DOC VERIFY EMAIL
-  @Get('confirm-email/:token')
+  @Get('verify-email/:token')
+  @VerifyEmailDoc()
   verifyEmail(@Param('token') token: string) {
     return this.verifyEmailUseCase.execute(token);
   }

@@ -1,5 +1,5 @@
-import { BadFormatRegistryError } from '@/common/error/bad-format-registry.error';
 import { IncorrectCredentialsError } from '@/common/error/incorrect-credentials.error';
+import { UnverifiedUserError } from '@/common/error/unverified-user.error';
 import { SigninDto } from '../dto/signin.dto';
 
 const authMock: SigninDto = {
@@ -9,6 +9,7 @@ const authMock: SigninDto = {
 
 export const SigninTest = () => {
   // TEST: "email" should not exist, should throw "IncorrectCredentialsError()"
+  //       User email should not be verified, should throw "UnverifiedUserError()"
   //       "password" should not match, should throw "IncorrectCredentialsError()"
   it('should validate business rules', validateBusinessRules);
 
@@ -17,7 +18,7 @@ export const SigninTest = () => {
 };
 
 const validateBusinessRules = async () => {
-  expect.assertions(2);
+  expect.assertions(3);
 
   try {
     const emailWRONG: SigninDto = {
@@ -27,6 +28,16 @@ const validateBusinessRules = async () => {
     await global.__CONTROLLER__.signin(emailWRONG);
   } catch (error) {
     expect(error).toStrictEqual(new IncorrectCredentialsError());
+  }
+
+  try {
+    const emailUnverified: SigninDto = {
+      email: 'email_test@mail.com',
+      password: 'password-test',
+    };
+    await global.__CONTROLLER__.signin(emailUnverified);
+  } catch (error) {
+    expect(error).toStrictEqual(new UnverifiedUserError());
   }
 
   try {

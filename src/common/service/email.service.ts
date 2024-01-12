@@ -14,7 +14,7 @@ export class EmailService {
         to: token.email,
         subject: 'Email Validation',
         html: `<b>Hey there, ${token.email}! </b><br><br> 
-        Click <a href="${process.env.BASE_URL}/auth/confirm-email/${token.id}">here</a> 
+        Click <a href="${process.env.BASE_URL}/auth/verify-email/${token.id}">here</a> 
         to verify your email.`,
       };
 
