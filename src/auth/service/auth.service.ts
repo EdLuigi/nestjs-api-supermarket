@@ -73,4 +73,8 @@ export class AuthService {
   async removeEmailToken(token: string) {
     await this.prisma.emailToken.delete({ where: { id: token } });
   }
+
+  async removeEmailTokenByUserId(userId: number) {
+    await this.prisma.emailToken.delete({ where: { userId } });
+  }
 }

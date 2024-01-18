@@ -47,6 +47,4 @@ export class RolesPermissionsService {
       where: { id },
     });
   }
-
-  // TODO: IMPLEMENT UPDATE ROUTE(?)
 }

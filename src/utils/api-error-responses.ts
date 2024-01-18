@@ -46,6 +46,11 @@ export const ExpiredTokenErrorObj = {
   status: HttpStatus.BAD_REQUEST,
 };
 
+export const AlreadyVerifiedEmailErrorObj = {
+  description: 'Email is already verified',
+  status: HttpStatus.BAD_REQUEST,
+};
+
 export const ForbiddenErrorObj = {
   description: 'User does not have the required permissions',
   status: HttpStatus.FORBIDDEN,
@@ -88,6 +93,11 @@ export const NotFoundUserRoleErrorObj = {
 
 export const NotFoundUserErrorObj = {
   description: 'User does not exist',
+  status: HttpStatus.NOT_FOUND,
+};
+
+export const NotFoundEmailErrorObj = {
+  description: 'Email is not registered',
   status: HttpStatus.NOT_FOUND,
 };
 
