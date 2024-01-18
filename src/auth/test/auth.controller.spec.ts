@@ -12,6 +12,7 @@ import { SigninUseCase } from '../use-case/signin.use-case';
 import { SignupDevUseCase } from '../use-case/signup-dev.use-case';
 import { SignupUseCase } from '../use-case/signup.use-case';
 import { VerifyEmailUseCase } from '../use-case/verify-email.use-case';
+import { ResendEmailTokentTest } from './resend-email-token.test';
 import { SigninTest } from './signin.test';
 import { SignupDevTest } from './signup-dev.test';
 import { SignupTest } from './signup.test';
@@ -53,5 +54,5 @@ describe('AuthController', () => {
   describe('signupDev()', () => SignupDevTest());
   describe('signin()', () => SigninTest());
   describe('verifyEmail()', () => VerifyEmailTest());
-  // TODO: RESEND EMAIL TESTS
+  describe('resendEmailToken()', () => ResendEmailTokentTest());
 });

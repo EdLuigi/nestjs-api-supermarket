@@ -23,7 +23,7 @@ const validateBusinessRules = async () => {
   try {
     const emailWRONG: SigninDto = {
       ...authMock,
-      email: 'wrongEmail@mail.com',
+      email: 'wrongEmail@email.com',
     };
     await global.__CONTROLLER__.signin(emailWRONG);
   } catch (error) {
@@ -32,7 +32,7 @@ const validateBusinessRules = async () => {
 
   try {
     const emailUnverified: SigninDto = {
-      email: 'email_test@mail.com',
+      email: 'email_test@email.com',
       password: 'password-test',
     };
     await global.__CONTROLLER__.signin(emailUnverified);

@@ -4,7 +4,7 @@ import { SignupDto } from '../dto/signup.dto';
 
 const authMock: SignupDto = {
   name: 'name-test',
-  email: 'email_test@mail.com',
+  email: 'email_test@email.com',
   registry: '827.224.678-36',
   password: 'password-test',
 };

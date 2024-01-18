@@ -4,7 +4,7 @@ import { BadFormatRegistryError } from '@/common/error/bad-format-registry.error
 
 const authMock: SignupDto = {
   name: 'name-test-dev',
-  email: 'email_test_dev@mail.com',
+  email: 'email_test_dev@email.com',
   registry: '694.118.648-80',
   password: 'password-test-dev',
 };

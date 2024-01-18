@@ -49,7 +49,6 @@ export class AuthController {
     return this.verifyEmailUseCase.execute(token);
   }
 
-  // TODO: RESEND EMAIL TOKEN DOCS
   @Post('resend-email-token/:email')
   @ResendEmailTokenDoc()
   resendEmailToken(@Param() email: ResendEmailDto) {

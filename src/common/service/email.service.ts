@@ -10,7 +10,7 @@ export class EmailService {
   async send(token: EmailToken) {
     try {
       const configEmail = {
-        from: 'no-reply@mail.com <Nestjs-Supermarket-API project>',
+        from: 'no-reply@email.com <Nestjs-Supermarket-API project>',
         to: token.email,
         subject: 'Email Validation',
         html: `<b>Hey there, ${token.email}! </b><br><br> 
