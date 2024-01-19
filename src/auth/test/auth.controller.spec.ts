@@ -8,11 +8,13 @@ import { AuthController } from '../controller/auth.controller';
 import { AuthService } from '../service/auth.service';
 import { JwtStrategy } from '../strategy/jwt.strategy';
 import { ResendEmailTokenCase } from '../use-case/resend-email-token.use-case';
+import { ResetPasswordUseCase } from '../use-case/reset-password.use-case';
 import { SigninUseCase } from '../use-case/signin.use-case';
 import { SignupDevUseCase } from '../use-case/signup-dev.use-case';
 import { SignupUseCase } from '../use-case/signup.use-case';
 import { VerifyEmailUseCase } from '../use-case/verify-email.use-case';
 import { ResendEmailTokentTest } from './resend-email-token.test';
+import { ResetPasswordTest } from './reset-password.test';
 import { SigninTest } from './signin.test';
 import { SignupDevTest } from './signup-dev.test';
 import { SignupTest } from './signup.test';
@@ -36,6 +38,7 @@ describe('AuthController', () => {
         VerifyEmailUseCase,
         EmailService,
         ResendEmailTokenCase,
+        ResetPasswordUseCase,
       ],
       imports: [AppModule, JwtModule.register({})],
     }).compile();
@@ -55,4 +58,5 @@ describe('AuthController', () => {
   describe('signin()', () => SigninTest());
   describe('verifyEmail()', () => VerifyEmailTest());
   describe('resendEmailToken()', () => ResendEmailTokentTest());
+  describe('resetPassword()', () => ResetPasswordTest());
 });

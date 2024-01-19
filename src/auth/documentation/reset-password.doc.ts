@@ -1,7 +1,7 @@
 import {
-  ExpiredTokenErrorObj,
+  IncorrectCredentialsErrorObj,
   InternalServerErrorObj,
-  NotFoundTokenErrorObj,
+  NotFoundUserErrorObj,
 } from '@/utils/api-error-responses';
 import { OkResponseObj } from '@/utils/api-ok-responses';
 import { applyDecorators } from '@nestjs/common';
@@ -12,28 +12,21 @@ import {
   ApiResponse,
 } from '@nestjs/swagger';
 
-export function VerifyEmailDoc() {
+export function ResetPasswordDoc() {
   return applyDecorators(
     ApiOperation({
-      description: 'Verify user email by token',
+      description: 'Reset account password by user id',
     }),
     ApiParam({
-      name: 'token',
+      name: 'id',
       type: 'string',
-      description: 'Token to verify user email address',
+      description: 'User id to reset password',
       allowEmptyValue: false,
     }),
 
-    ApiOkResponse({
-      description: OkResponseObj.description,
-      schema: {
-        example: {
-          access_token: 'string',
-        },
-      },
-    }),
-    ApiResponse(ExpiredTokenErrorObj),
-    ApiResponse(NotFoundTokenErrorObj),
+    ApiOkResponse(OkResponseObj),
+    ApiResponse(IncorrectCredentialsErrorObj),
+    ApiResponse(NotFoundUserErrorObj),
     ApiResponse(InternalServerErrorObj),
   );
 }

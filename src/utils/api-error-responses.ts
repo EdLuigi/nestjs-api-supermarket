@@ -47,7 +47,7 @@ export const ExpiredTokenErrorObj = {
 };
 
 export const AlreadyVerifiedEmailErrorObj = {
-  description: 'Email is already verified',
+  description: 'Email was already verified',
   status: HttpStatus.BAD_REQUEST,
 };
 
