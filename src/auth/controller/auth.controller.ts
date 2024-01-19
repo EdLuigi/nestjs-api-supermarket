@@ -1,14 +1,18 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { IdFormatValidationPipe } from '@/common/pipe/id-format-validation.pipe';
+import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ResendEmailTokenDoc } from '../documentation/resend-email-token.doc';
+import { ResetPasswordDoc } from '../documentation/reset-password.doc';
 import { SigninDoc } from '../documentation/signin.doc';
 import { SignupDevDoc } from '../documentation/signup-dev.doc';
 import { SignupDoc } from '../documentation/signup.doc';
 import { VerifyEmailDoc } from '../documentation/verify-email.doc';
 import { ResendEmailDto } from '../dto/resend-email.dto';
+import { ResetPasswordDto } from '../dto/reset-password.dto';
 import { SigninDto } from '../dto/signin.dto';
 import { SignupDto } from '../dto/signup.dto';
 import { ResendEmailTokenCase } from '../use-case/resend-email-token.use-case';
+import { ResetPasswordUseCase } from '../use-case/reset-password.use-case';
 import { SigninUseCase } from '../use-case/signin.use-case';
 import { SignupDevUseCase } from '../use-case/signup-dev.use-case';
 import { SignupUseCase } from '../use-case/signup.use-case';
@@ -23,6 +27,7 @@ export class AuthController {
     private readonly signupDevUseCase: SignupDevUseCase,
     private readonly verifyEmailUseCase: VerifyEmailUseCase,
     private readonly resendEmailTokenUseCase: ResendEmailTokenCase,
+    private readonly resetPasswordUseCase: ResetPasswordUseCase,
   ) {}
 
   @Post('signup')
@@ -55,8 +60,12 @@ export class AuthController {
     return this.resendEmailTokenUseCase.execute(email);
   }
 
-  // TODO: FORGOT PASSWORD ROUTE (PATCH)
-  // TODO: FORGOT PASSWORD DOCS
-
-  // TODO: IMPLEMENT GENERIC ROUTE SEND-TO-EMAIL (GET) (?)
+  @Patch('reset-password/:id')
+  @ResetPasswordDoc()
+  resetPassword(
+    @Param('id', IdFormatValidationPipe) id: number,
+    @Body() resetPasswordDto: ResetPasswordDto,
+  ) {
+    return this.resetPasswordUseCase.execute(id, resetPasswordDto);
+  }
 }
